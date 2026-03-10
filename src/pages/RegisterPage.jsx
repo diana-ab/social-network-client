@@ -1,10 +1,12 @@
-import { useState } from "react";
-import { registerUser } from "../services/authService";
+import {useState} from "react";
+import {registerUser} from "../services/authService";
 
 function RegisterPage() {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [user, setUser] = useState({
+        username: "",
+        email: "",
+        password: "",
+    })
     const [message, setMessage] = useState("");
 
     const handleRegister = async (event) => {
@@ -12,9 +14,9 @@ function RegisterPage() {
 
         try {
             const result = await registerUser({
-                username: username,
-                email: email,
-                password: password
+                username: user.username,
+                email: user.email,
+                password: user.password
             });
 
             setMessage(result.message);
@@ -32,30 +34,27 @@ function RegisterPage() {
                 <div>
                     <label>Username</label>
                     <input
-                        id="username"
                         type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={user.username}
+                        onChange={(e) => setUser({...user, username: e.target.value})}
                     />
                 </div>
 
                 <div>
                     <label>Email</label>
                     <input
-                        id="email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={user.email}
+                        onChange={(e) => setUser({...user, email: e.target.value})}
                     />
                 </div>
 
                 <div>
                     <label>Password</label>
                     <input
-                        id="password"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={user.password}
+                        onChange={(e) => setUser({...user, password: e.target.value})}
                     />
                 </div>
 
