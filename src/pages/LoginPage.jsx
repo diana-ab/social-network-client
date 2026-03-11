@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {loginUser} from "../services/authService.js";
-import{useNavigate}  from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import Cookies from "js-cookie";
 
 function LoginPage() {
     const [user, setUser] = useState({
@@ -20,8 +21,8 @@ function LoginPage() {
             });
             setMessage(result.message);
             if (result.success) {
-                // localStorage.setItem("accessToken", result.accessToken);
-                // localStorage.setItem("refreshToken", result.refreshToken);
+                Cookies.set("accessToken", result.accessToken);
+                Cookies.set("refreshToken", result.refreshToken);
                 navigate("/feed");
             }
         } catch (error) {
