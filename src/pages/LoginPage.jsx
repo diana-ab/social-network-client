@@ -21,8 +21,8 @@ function LoginPage() {
             });
             setMessage(result.message);
             if (result.success) {
-                Cookies.set("accessToken", result.accessToken);
-                Cookies.set("refreshToken", result.refreshToken);
+                // Cookies.set("accessToken", result.accessToken);
+                // Cookies.set("refreshToken", result.refreshToken);
                 navigate("/feed");
             }
         } catch (error) {
