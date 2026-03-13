@@ -10,7 +10,7 @@ export const loginUser = async (userData) => {
     return response.data;
 };
 
-export const logoutUser = async (refreshToken) => {
-    const response = await api.post("/logout", { refreshToken });
+export const logoutUser = async () => {
+    const response = await api.post("/logout");
     return response.data;
 };
