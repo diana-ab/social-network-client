@@ -1,10 +1,13 @@
-import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../services/authService";
+import { useEffect } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { verifyRegisterCode } from "../services/authService";
 import DynamicForm from "../components/ui/form/DynamicForm.jsx";
 import useAuthForm from "../hooks/useAuthForm";
 
-function LoginPage() {
+function RegisterVerifyPage() {
+    const location = useLocation();
     const navigate = useNavigate();
+    const email = location.state?.email;
     const {
         formData,
         setFormData,
@@ -13,40 +16,39 @@ function LoginPage() {
         setErrorCodeMessage,
         setApiErrorMessage,
     } = useAuthForm({
-        username: "",
-        password: "",
+        code: "",
     });
+
+    useEffect(() => {
+        if (!email) {
+            navigate("/register", { replace: true });
+        }
+    }, [email, navigate]);
+
     const fields = [
         {
-            name: "username",
-            label: "Username",
+            name: "code",
+            label: "Verification Code",
             type: "text",
-            placeholder: "Enter username",
-            required: true,
-        },
-        {
-            name: "password",
-            label: "Password",
-            type: "password",
-            placeholder: "Enter password",
+            placeholder: "Enter code",
             required: true,
         },
     ];
 
-    const handleLogin = async (event) => {
+    const handleVerify = async (event) => {
         event.preventDefault();
         clearMessage();
 
         try {
-            const result = await loginUser({
-                username: formData.username,
-                password: formData.password,
+            const result = await verifyRegisterCode({
+                email,
+                code: formData.code,
             });
 
             if (result.success) {
-                navigate("/login/verify", {
+                navigate("/register/complete", {
                     state: {
-                        pendingLoginToken: result.pendingLoginToken,
+                        registrationToken: result.registrationToken,
                     },
                 });
             } else {
@@ -59,19 +61,20 @@ function LoginPage() {
 
     return (
         <DynamicForm
-            title="Log into MySN"
+            title="Verify Register"
             formData={formData}
             setFormData={setFormData}
             fields={fields}
-            onSubmit={handleLogin}
-            buttonText="Log in"
+            onSubmit={handleVerify}
+            buttonText="Continue"
             message={message}
             footer={
                 <p>
-                    Don't have an account? <Link to="/register">Create one</Link>
+                    Back to <Link to="/register">register</Link>
                 </p>
             }
         />
     );
 }
-export default LoginPage;
+
+export default RegisterVerifyPage;

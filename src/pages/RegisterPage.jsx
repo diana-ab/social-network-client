@@ -1,68 +1,68 @@
-import {useState} from "react";
-import {registerUser} from "../services/authService";
+import { useNavigate, Link } from "react-router-dom";
+import { sendRegisterCode } from "../services/authService";
+import DynamicForm from "../components/ui/form/DynamicForm.jsx";
+import useAuthForm from "../hooks/useAuthForm";
 
 function RegisterPage() {
-    const [user, setUser] = useState({
-        username: "",
-        email: "",
-        password: "",
-    })
-    const [message, setMessage] = useState("");
+    const navigate = useNavigate();
 
-    const handleRegister = async (event) => {
+    const {
+        formData,
+        setFormData,
+        message,
+        clearMessage,
+        setErrorCodeMessage,
+        setApiErrorMessage,
+    } = useAuthForm({
+        email: "",
+    });
+
+    const fields = [
+        {
+            name: "email",
+            label: "Email",
+            type: "email",
+            placeholder: "Enter email",
+            required: true,
+        },
+    ];
+
+    const handleSendCode = async (event) => {
         event.preventDefault();
+        clearMessage();
 
         try {
-            const result = await registerUser({
-                username: user.username,
-                email: user.email,
-                password: user.password
+            const result = await sendRegisterCode({
+                email: formData.email,
             });
 
-            setMessage(result.message);
+            if (result.success) {
+                navigate("/register/verify", {
+                    state: { email: formData.email },
+                });
+            } else {
+                setErrorCodeMessage(result.errorCode);
+            }
         } catch (error) {
-            console.log(error);
-            setMessage("Registration failed");
+            setApiErrorMessage(error);
         }
     };
 
     return (
-        <div>
-            <h1>Register</h1>
-
-            <form onSubmit={handleRegister}>
-                <div>
-                    <label>Username</label>
-                    <input
-                        type="text"
-                        value={user.username}
-                        onChange={(e) => setUser({...user, username: e.target.value})}
-                    />
-                </div>
-
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        value={user.email}
-                        onChange={(e) => setUser({...user, email: e.target.value})}
-                    />
-                </div>
-
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        value={user.password}
-                        onChange={(e) => setUser({...user, password: e.target.value})}
-                    />
-                </div>
-
-                <button type="submit">Register</button>
-            </form>
-
-            <p>{message}</p>
-        </div>
+        <DynamicForm
+            title="Register"
+            formData={formData}
+            setFormData={setFormData}
+            fields={fields}
+            onSubmit={handleSendCode}
+            buttonText="Send Code"
+            message={message}
+            footer={
+                <p>
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
+            }
+        />
     );
 }
 

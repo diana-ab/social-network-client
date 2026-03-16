@@ -1,21 +1,34 @@
-import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../services/authService";
+import { useEffect } from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import { completeRegister } from "../services/authService";
 import DynamicForm from "../components/ui/form/DynamicForm.jsx";
 import useAuthForm from "../hooks/useAuthForm";
 
-function LoginPage() {
+function RegisterCompletePage() {
+    const location = useLocation();
     const navigate = useNavigate();
+    const registrationToken = location.state?.registrationToken;
+
     const {
         formData,
         setFormData,
         message,
+        setMessage,
         clearMessage,
         setErrorCodeMessage,
         setApiErrorMessage,
     } = useAuthForm({
         username: "",
         password: "",
+        confirmPassword: "",
     });
+
+    useEffect(() => {
+        if (!registrationToken) {
+            navigate("/register", { replace: true });
+        }
+    }, [registrationToken, navigate]);
+
     const fields = [
         {
             name: "username",
@@ -31,24 +44,33 @@ function LoginPage() {
             placeholder: "Enter password",
             required: true,
         },
+        {
+            name: "confirmPassword",
+            label: "Confirm Password",
+            type: "password",
+            placeholder: "Confirm password",
+            required: true,
+        },
     ];
 
-    const handleLogin = async (event) => {
+    const handleCompleteRegister = async (event) => {
         event.preventDefault();
         clearMessage();
 
+        if (formData.password !== formData.confirmPassword) {
+            setMessage("Passwords do not match");
+            return;
+        }
+
         try {
-            const result = await loginUser({
+            const result = await completeRegister({
+                registrationToken,
                 username: formData.username,
                 password: formData.password,
             });
 
             if (result.success) {
-                navigate("/login/verify", {
-                    state: {
-                        pendingLoginToken: result.pendingLoginToken,
-                    },
-                });
+                navigate("/login", { replace: true });
             } else {
                 setErrorCodeMessage(result.errorCode);
             }
@@ -59,19 +81,20 @@ function LoginPage() {
 
     return (
         <DynamicForm
-            title="Log into MySN"
+            title="Complete Register"
             formData={formData}
             setFormData={setFormData}
             fields={fields}
-            onSubmit={handleLogin}
-            buttonText="Log in"
+            onSubmit={handleCompleteRegister}
+            buttonText="Register"
             message={message}
             footer={
                 <p>
-                    Don't have an account? <Link to="/register">Create one</Link>
+                    Back to <Link to="/login">login</Link>
                 </p>
             }
         />
     );
 }
-export default LoginPage;
+
+export default RegisterCompletePage;

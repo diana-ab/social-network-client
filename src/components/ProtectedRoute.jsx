@@ -1,10 +1,36 @@
+import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import api from "../api/axiosClient";
 
 function ProtectedRoute({ children }) {
-    const accessToken = Cookies.get("accessToken");
+    const [isLoading, setIsLoading] = useState(true);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-    if (!accessToken) {
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const response = await api.post("/refresh");
+
+                if (response.data?.success) {
+                    setIsAuthenticated(true);
+                } else {
+                    setIsAuthenticated(false);
+                }
+            } catch (error) {
+                setIsAuthenticated(false);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        checkAuth();
+    }, []);
+
+    if (isLoading) {
+        return <div>Checking authentication...</div>;
+    }
+
+    if (!isAuthenticated) {
         return <Navigate to="/login" replace />;
     }
 

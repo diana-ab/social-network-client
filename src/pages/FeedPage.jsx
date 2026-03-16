@@ -14,14 +14,14 @@ function FeedPage() {
             })
             .catch((error) => {
                 console.error("Error:", error);
-                setMessage("Request failed");
+                setMessage("Failed to load feed");
             });
-    }, [navigate]);
+    }, []);
 
     const handleLogout = async () => {
         try {
             await logoutUser();
-            navigate("/login");
+            navigate("/login", { replace: true });
         } catch (error) {
             console.error("Logout failed", error);
         }
