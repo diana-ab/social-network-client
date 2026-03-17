@@ -5,7 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import RegisterVerifyPage from "./pages/RegisterVerifyPage";
 import RegisterCompletePage from "./pages/RegisterCompletePage";
 import FeedPage from "./pages/FeedPage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import ValidateSession from "./components/ValidateSession.jsx";
 
 function App() {
     return (
@@ -23,9 +23,9 @@ function App() {
                 <Route
                     path="/feed"
                     element={
-                        <ProtectedRoute>
+                        <ValidateSession>
                             <FeedPage />
-                        </ProtectedRoute>
+                        </ValidateSession>
                     }
                 />
             </Routes>
