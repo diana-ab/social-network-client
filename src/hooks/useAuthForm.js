@@ -14,6 +14,7 @@ function useAuthForm(initialFormData) {
     };
 
     const setApiErrorMessage = (error) => {
+        console.log("API error:", error);
         setMessage(getMessageFromApiError(error));
     };
 

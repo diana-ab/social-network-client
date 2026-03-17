@@ -13,6 +13,7 @@ function DynamicForm({
                          message,
                          footer = null
                      }) {
+
     const handleFieldChange = (fieldName, value) => {
         setFormData((prevData) => ({
             ...prevData,

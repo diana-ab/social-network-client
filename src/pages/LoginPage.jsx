@@ -42,7 +42,6 @@ function LoginPage() {
                 username: formData.username,
                 password: formData.password,
             });
-
             if (result.success) {
                 navigate("/login/verify", {
                     state: {
