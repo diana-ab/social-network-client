@@ -25,6 +25,7 @@ function RegisterCompletePage() {
 
     useEffect(() => {
         if (!registrationToken) {
+            console.log("Registration Token not set   "  , registrationToken);
             navigate("/register", { replace: true });
         }
     }, [registrationToken, navigate]);

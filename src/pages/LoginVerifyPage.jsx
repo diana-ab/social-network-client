@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { verifyLoginCode } from "../services/authService";
+import {sendLoginCode, verifyLoginCode} from "../services/authService";
 import DynamicForm from "../components/ui/form/DynamicForm.jsx";
 import useAuthForm from "../hooks/useAuthForm";
+import AskForCodeSection from "../components/AskForCodeSection.jsx";
 
 function LoginVerifyPage() {
     const location = useLocation();
@@ -25,6 +26,9 @@ function LoginVerifyPage() {
         }
     }, [pendingLoginToken, navigate]);
 
+
+
+
     const fields = [
         {
             name: "code",
@@ -34,6 +38,7 @@ function LoginVerifyPage() {
             required: true,
         },
     ];
+
 
     const handleVerify = async (event) => {
         event.preventDefault();
@@ -55,6 +60,10 @@ function LoginVerifyPage() {
         }
     };
 
+
+
+
+
     return (
         <DynamicForm
             title="Verify Login"
@@ -64,6 +73,15 @@ function LoginVerifyPage() {
             onSubmit={handleVerify}
             buttonText="Verify"
             message={message}
+            extraContent={
+                <AskForCodeSection
+                    sendCodeFunction={sendLoginCode}
+                    requestData={{ pendingLoginToken }}
+                    setErrorCodeMessage={setErrorCodeMessage}
+                    setApiErrorMessage={setApiErrorMessage}
+                    setSuccessMessage={() => {}}
+                />
+            }
             footer={
                 <p>
                     Back to <Link to="/login">login</Link>

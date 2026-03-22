@@ -46,9 +46,10 @@ function RegisterVerifyPage() {
             });
 
             if (result.success) {
+                console.log(result);
                 navigate("/register/complete", {
                     state: {
-                        registrationToken: result.registrationToken,
+                        registrationToken: result.tempToken,
                     },
                 });
             } else {

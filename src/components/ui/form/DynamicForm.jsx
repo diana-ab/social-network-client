@@ -11,6 +11,7 @@ function DynamicForm({
                          onSubmit,
                          buttonText,
                          message,
+                         extraContent = null,
                          footer = null
                      }) {
 
@@ -55,7 +56,8 @@ function DynamicForm({
                     disabled={isFormIncomplete}
                 />
 
-                <FormMessage message={message} />
+                <FormMessage message={message}/>
+                {extraContent}
                 {footer}
             </form>
         </FormCard>
