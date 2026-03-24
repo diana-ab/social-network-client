@@ -8,7 +8,7 @@ import AskForCodeSection from "../components/atuh/AskForCodeSection.jsx";
 function LoginVerifyPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const pendingLoginToken = location.state?.pendingLoginToken;
+    const tempToken = location.state?.tempToken;
     const {
         formData,
         setFormData,
@@ -21,10 +21,10 @@ function LoginVerifyPage() {
     });
 
     useEffect(() => {
-        if (!pendingLoginToken) {
+        if (!tempToken) {
             navigate("/login", { replace: true });
         }
-    }, [pendingLoginToken, navigate]);
+    }, [tempToken, navigate]);
 
 
 
@@ -46,7 +46,7 @@ function LoginVerifyPage() {
 
         try {
             const result = await verifyLoginCode({
-                pendingLoginToken,
+                tempToken,
                 code: formData.code,
             });
 
@@ -76,7 +76,7 @@ function LoginVerifyPage() {
             extraContent={
                 <AskForCodeSection
                     sendCodeFunction={sendLoginCode}
-                    requestData={{ pendingLoginToken }}
+                    requestData={{ tempToken }}
                     setErrorCodeMessage={setErrorCodeMessage}
                     setApiErrorMessage={setApiErrorMessage}
                     setSuccessMessage={() => {}}

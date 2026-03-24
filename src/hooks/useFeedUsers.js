@@ -1,43 +1,81 @@
-import {useState} from "react";
-import {followUserInList, unfollowUserInList} from "../utils/feedUsersHelpers.js";
-
+import {useEffect, useState} from "react";
 
 function useFeedUsers() {
     const [searchTerm, setSearchTerm] = useState("");
-    const mockUsers = [
-        { id: 1, username: "shimon", isFollowing: true },
-        { id: 2, username: "shimon2", isFollowing: true },
-        { id: 3, username: "shimon3", isFollowing: true },
-        { id: 4, username: "shim", isFollowing: true },
-        { id: 5, username: "shi", isFollowing: true },
-        { id: 6, username: "diana", isFollowing: true },
-        { id: 7, username: "kloy", isFollowing: false },
-    ];
-
-    const [users, setUsers] = useState([...mockUsers]);
+    const [users, setUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
 
+    useEffect(() => {
+        const loadUsers = async () => {
+            if (!searchTerm.trim()) {
+                setUsers([]);
+                return;
+            }
+
+            try {
+                setIsLoading(true);
+                setError("");
+
+                // כאן בהמשך תהיה קריאת שרת אמיתית
+                // const data = await searchUsers(searchTerm);
+                // setUsers(data);
+
+            } catch (error) {
+                console.error("Failed to search users", error);
+                setError("Failed to load users");
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadUsers();
+    }, [searchTerm]);
+
     const handleFollowUser = async (selectedUser) => {
-        setUsers((prevUsers) => followUserInList(prevUsers, selectedUser));
+        try {
+            // await followUser(selectedUser.id);
+
+            setUsers((prevUsers) =>
+                prevUsers.map((user) =>
+                    user.id === selectedUser.id
+                        ? {...user, isFollowing: true} : user
+                )
+            );
+        } catch (error) {
+            console.error("Follow failed", error);
+            setError("Follow failed");
+        }
     };
 
     const handleUnfollowUser = async (selectedUser) => {
-        setUsers((prevUsers) => unfollowUserInList(prevUsers, selectedUser));
+        try {
+            // await unfollowUser(selectedUser.id);
+
+            setUsers((prevUsers) =>
+                prevUsers.map((user) =>
+                    user.id === selectedUser.id
+                        ? {...user, isFollowing: false} : user
+                )
+            );
+        } catch (error) {
+            console.error("Unfollow failed", error);
+            setError("Unfollow failed");
+        }
     };
 
-    const filteredUsers = users.filter((user) =>
-        user.username.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // const filteredUsers = users.filter((user) =>
+    //     user.username.toLowerCase().includes(searchTerm.toLowerCase())
+    // );
 
     return {
         searchTerm,
         setSearchTerm,
-        filteredUsers,
-        handleFollowUser,
-        handleUnfollowUser,
+        users,
         isLoading,
         error,
+        handleFollowUser,
+        handleUnfollowUser,
     };
 }
+
 export default useFeedUsers;

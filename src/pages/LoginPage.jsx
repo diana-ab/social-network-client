@@ -45,7 +45,7 @@ function LoginPage() {
             if (result.success) {
                 navigate("/login/verify", {
                     state: {
-                        pendingLoginToken:result.tempToken,
+                        tempToken:result.tempToken,
                     },
                 });
             } else {
