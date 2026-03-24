@@ -1,4 +1,4 @@
-import UserCardBase from "./UserCardBase.jsx";
+import UserCardBase from "./ui_user/UserCardBase.jsx";
 
 function FollowingItem ({user, onClick}) {
 

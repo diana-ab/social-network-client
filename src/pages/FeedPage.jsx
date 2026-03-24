@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axiosClient";
 import { logoutUser } from "../services/authService";
-import UserCardBase from "../components/dashboard/user/UserCardBase.jsx";
+import UserCardBase from "../components/dashboard/user/ui_user/UserCardBase.jsx";
 import FollowingItem from "../components/dashboard/user/FollowingItem.jsx";
 import FollowingList from "../components/dashboard/user/FollowingList.jsx";
+import SearchResultItem from "../components/dashboard/user/SearchResultItem.jsx";
 
 function FeedPage() {
     const [message, setMessage] = useState("Loading...");
@@ -42,9 +43,11 @@ function FeedPage() {
             <button onClick={handleLogout}>Logout</button>
             <p>{message}</p>
             <div >
-                <FollowingList
-                users={users}/>
+               <FollowingList
+                   users={users}
+               />
             </div>
+
         </div>
     );
 }

@@ -1,12 +1,11 @@
-
-
-.following-list {
+.user-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
+    padding: 8px 0;
 }
 
-.following-list__empty {
+.user-list__empty {
     font-size: 14px;
     color: #6b7280;
     padding: 8px;

@@ -6,11 +6,15 @@
     padding: 10px 12px;
     border-radius: 10px;
     background-color: white;
-    transition: background-color 0.2s ease;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.15s ease;
 }
 
 .user-card-base:hover {
-    background-color: #f3f4f6;
+    background-color: #f9fafb;
+    transform: translateY(-1px);
 }
 
 .user-card-base__left {
