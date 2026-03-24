@@ -1,4 +1,4 @@
-
+import "./style_layout/FeedBody.css";
 import RightSidebar from "./RightSidebar.jsx";
 import LeftSidebar from "./LeftSidebar.jsx";
 import FeedMain from "./FeedMain.jsx";

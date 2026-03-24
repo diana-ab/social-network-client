@@ -1,7 +1,7 @@
 function LeftSidebar() {
     return (
-        <aside>
-            <div>Left sidebar</div>
+        <aside className="left-sidebar">
+            <div className="left-sidebar__box">Left sidebar</div>
         </aside>
     );
 }

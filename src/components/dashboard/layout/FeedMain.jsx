@@ -1,7 +1,7 @@
 function FeedMain() {
     return (
-        <main>
-            <div>Feed main</div>
+        <main className="feed-main">
+            <div className="feed-main__box">Feed main</div>
         </main>
     );
 }

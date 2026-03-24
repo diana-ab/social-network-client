@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {followUserInList, unfollowUserInList} from "../utils/feedUsersHelpers.js";
 
+
 function useFeedUsers() {
     const [searchTerm, setSearchTerm] = useState("");
     const mockUsers = [

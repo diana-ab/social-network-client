@@ -1,4 +1,5 @@
 import CustomInput from "../../ui/input/CustomInput.jsx";
+import "./style_user/UserSearch.css"
 
 function UserSearch({value, onChange}) {
 

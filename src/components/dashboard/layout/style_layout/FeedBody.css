@@ -1,15 +1,19 @@
 .feed-body {
     width: 100%;
-    max-width: 1400px;
-    margin: 30px auto 0;
     display: grid;
-    grid-template-columns: 260px 1fr 340px;
-    gap: 24px;
+    grid-template-columns: 1fr 1fr 340px;
+    gap: 32px;
     align-items: start;
+    margin-top: 32px;
 }
 
-@media (max-width: 1100px) {
-    .feed-body {
-        grid-template-columns: 1fr;
-    }
+.left-sidebar,
+.feed-main,
+.right-sidebar {
+    width: 100%;
+}
+
+.left-sidebar__box,
+.feed-main__box {
+    min-height: 120px;
 }
