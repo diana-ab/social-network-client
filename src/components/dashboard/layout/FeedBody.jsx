@@ -1,5 +1,8 @@
-import useFeedUsers from "../../../hooks/useFeedUsers.js";
+
 import RightSidebar from "./RightSidebar.jsx";
+import LeftSidebar from "./LeftSidebar.jsx";
+import FeedMain from "./FeedMain.jsx";
+import useFeedUsers from "../../../hooks/useFeedUsers.js";
 
 
 function FeedBody() {
@@ -7,7 +10,9 @@ function FeedBody() {
         handleUnfollowUser} = useFeedUsers();
 
     return (
-        <div>
+        <div className="feed-body">
+            <LeftSidebar />
+            <FeedMain />
             <RightSidebar
                 searchTerm={searchTerm}
                 onSearchChange={(event) => setSearchTerm(event.target.value)}

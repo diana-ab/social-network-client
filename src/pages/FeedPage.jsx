@@ -36,14 +36,14 @@ function FeedPage() {
 
 
     return (
-        <div style={{ width: "300px", marginTop: "20px" }}>
+        <div >
             <h1>Feed</h1>
             <button onClick={handleLogout}>Logout</button>
             <p>{message}</p>
-
             <div>
                 <FeedBody/>
             </div>
+
 
 
 
