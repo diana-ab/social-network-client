@@ -1,0 +1,14 @@
+.right-sidebar {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.right-sidebar__search {
+    width: 100%;
+}
+
+.right-sidebar__results {
+    width: 100%;
+}

@@ -1,20 +1,20 @@
-
-import UserList from './UserList';
 import SearchResultItem from "./SearchResultItem";
+import UserList from "./ui_user/UserList.jsx";
 
-function SearchResultsList({ users = [], onFollowUser, onUserClick }) {
+function SearchResultsList({users = [], onFollowUser, onUnfollowUser,
+                               onUserClick  }) {
+
     return (
         <UserList
             users={users}
             emptyMessage="No users found"
             renderItem={(user) => (
-                <SearchResultItem
-                    user={user}
+                <SearchResultItem user={user}
+                    isFollowing={user.isFollowing}
                     onFollow={onFollowUser}
-                    onClick={() => onUserClick && onUserClick(user)}
-                />
-            )}
-        />
+                    onUnfollow={onUnfollowUser}
+                    onClick={() => onUserClick && onUserClick(user)}/>
+            )}/>
     );
 }
 
