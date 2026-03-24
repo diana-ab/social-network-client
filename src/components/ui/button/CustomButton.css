@@ -1,18 +1,58 @@
 .custom-button {
-    width: 100%;
-    padding: 12px 16px;
-    background-color: #2563eb;
-    color: white;
     border: none;
     border-radius: 8px;
-    font-size: 16px;
     font-weight: 600;
+    font-family: inherit;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
-.custom-button:hover {
+.custom-button--full-width {
+    width: 100%;
+}
+
+/* sizes */
+.custom-button--small {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.custom-button--medium {
+    padding: 12px 16px;
+    font-size: 16px;
+}
+
+.custom-button--large {
+    padding: 14px 20px;
+    font-size: 18px;
+}
+
+/* variants */
+.custom-button--primary {
+    background-color: #2563eb;
+    color: white;
+}
+
+.custom-button--primary:hover:not(:disabled) {
     background-color: #1d4ed8;
+}
+
+.custom-button--secondary {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+.custom-button--secondary:hover:not(:disabled) {
+    background-color: #d1d5db;
+}
+
+.custom-button--ghost {
+    background-color: transparent;
+    color: #2563eb;
+}
+
+.custom-button--ghost:hover:not(:disabled) {
+    background-color: rgba(37, 99, 235, 0.08);
 }
 
 .custom-button:disabled {

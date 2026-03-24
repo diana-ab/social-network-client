@@ -1,0 +1,13 @@
+
+
+.following-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.following-list__empty {
+    font-size: 14px;
+    color: #6b7280;
+    padding: 8px;
+}

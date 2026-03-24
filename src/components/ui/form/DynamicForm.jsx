@@ -52,9 +52,10 @@ function DynamicForm({
 
                 <CustomButton
                     type="submit"
-                    text={buttonText}
                     disabled={isFormIncomplete}
-                />
+                >
+                    {buttonText}
+                </CustomButton>
 
                 <FormMessage message={message}/>
                 {extraContent}

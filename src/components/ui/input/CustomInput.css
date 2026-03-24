@@ -1,8 +1,13 @@
+
 .custom-input-wrapper {
     display: flex;
     flex-direction: column;
     gap: 8px;
     margin-bottom: 18px;
+}
+
+.custom-input-wrapper--full-width {
+    width: 100%;
 }
 
 .custom-input-label {
@@ -12,11 +17,11 @@
 }
 
 .custom-input {
-    font-family: inherit;
     width: 100%;
     box-sizing: border-box;
     padding: 12px 14px;
     font-size: 16px;
+    font-family: inherit;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     outline: none;
@@ -30,4 +35,9 @@
 
 .custom-input::placeholder {
     color: #9ca3af;
+}
+
+.custom-input:disabled {
+    background-color: #f1f5f9;
+    cursor: not-allowed;
 }

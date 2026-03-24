@@ -5,7 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import RegisterVerifyPage from "./pages/RegisterVerifyPage";
 import RegisterCompletePage from "./pages/RegisterCompletePage";
 import FeedPage from "./pages/FeedPage";
-import ValidateSession from "./components/ValidateSession.jsx";
+import ValidateSession from "./components/atuh/ValidateSession.jsx";
 
 function App() {
     return (

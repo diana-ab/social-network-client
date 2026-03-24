@@ -3,7 +3,7 @@ import { useLocation, useNavigate, Link } from "react-router-dom";
 import {sendLoginCode, verifyLoginCode} from "../services/authService";
 import DynamicForm from "../components/ui/form/DynamicForm.jsx";
 import useAuthForm from "../hooks/useAuthForm";
-import AskForCodeSection from "../components/AskForCodeSection.jsx";
+import AskForCodeSection from "../components/atuh/AskForCodeSection.jsx";
 
 function LoginVerifyPage() {
     const location = useLocation();

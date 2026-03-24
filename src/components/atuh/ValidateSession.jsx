@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import api from "../api/axiosClient";
+import api from "../../api/axiosClient.js";
 
 function ValidateSession({ children }) {
 
