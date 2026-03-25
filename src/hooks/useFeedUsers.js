@@ -17,9 +17,7 @@ function useFeedUsers() {
             try {
                 setIsLoading(true);
                 setError("");
-                const result = await searchUsers(
-                    {
-                        text: searchTerm,});
+                const result = await searchUsers(searchTerm);
             console.log(result);
                 if(result.success){
                     console.log(result.users);

@@ -1,20 +1,23 @@
 import api from "../api/axiosClient";
 
 export async function searchUsers(text) {
-    console.log(text);
     const response = await api.post("/dashboard/search", {
-        params: { text }
+        text: text
     });
     return response.data;
 }
 
 export async function followUser(userId) {
-    const response = await api.post(`/dashboard/follow/${userId}`);
+    const response = await api.post("/dashboard/follow", {
+        followedUserId: userId
+    });
     return response.data;
 }
 
 export async function unfollowUser(userId) {
-    const response = await api.delete(`/dashboard/follow/${userId}`);
+    const response = await api.delete("/dashboard/follow", {
+        data: { followedUserId: userId }
+    });
     return response.data;
 }
 
