@@ -7,7 +7,7 @@ import {useState} from "react";
 function FeedMain() {
 
     const [postText, setPostText] = useState("");
-    const mockPosts = [
+    const [posts, setPosts] = useState([
         {
             id: 1,
             content: "פוסט ישן יותר",
@@ -29,19 +29,39 @@ function FeedMain() {
             username: "kloy",
             profilePicture: "",
         },
-    ];
+    ]);
+
 
     const handleCreatePost = () => {
-        console.log("New post:", postText);
+        const trimmedPostText = postText.trim();
+
+        if (!trimmedPostText) {
+            return;
+        }
+        const newPost = {
+            id: Date.now(),
+            content: trimmedPostText,
+            createdAt: new Date().toISOString(),
+            username: "shimon",
+            profilePicture: "",
+        };
+
+        setPosts((previousPosts) => [newPost, ...previousPosts]);
+        setPostText("");
+    };
+
+    const handlePostTextChange = (event) => {
+        setPostText(event.target.value);
     };
 
 
     return (
         <main className="feed-main">
-            <CreatePostBox value={postText}
-                           onChange={(event) => setPostText(event.target.value)}
-                           onSubmit={handleCreatePost}/>
-            <PostList posts={mockPosts}/>
+            <CreatePostBox
+                value={postText}
+                onChange={handlePostTextChange}
+                onSubmit={handleCreatePost}/>
+            <PostList posts={posts}/>
         </main>
     );
 }
