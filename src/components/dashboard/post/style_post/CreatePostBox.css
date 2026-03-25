@@ -1,0 +1,41 @@
+.create-post-box {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.create-post-box__textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: vertical;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 12px;
+    font: inherit;
+    box-sizing: border-box;
+    outline: none;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.create-post-box__textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.create-post-box__textarea::placeholder {
+    color: #9ca3af;
+}
+
+.create-post-box__textarea:disabled {
+    background-color: #f1f5f9;
+    cursor: not-allowed;
+}
+
+.create-post-box__actions {
+    margin-top: 12px;
+    display: flex;
+    justify-content: flex-end;
+}

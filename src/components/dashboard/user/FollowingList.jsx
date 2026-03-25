@@ -10,7 +10,7 @@ function FollowingList ( {users= [] , onClickOnUser} ) {
         renderItem={(user) => (
             <FollowingItem
                 user={user}
-                onClick={onClickOnUser&& onClickOnUser(user)}/>
+                onClick={() => onClickOnUser && onClickOnUser(user)}/>
     )} />
     )
 }

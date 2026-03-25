@@ -1,0 +1,62 @@
+.post-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.post-card__header {
+    margin-bottom: 12px;
+}
+
+.post-card__user {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-card__image,
+.post-card__avatar-fallback {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.post-card__image {
+    object-fit: cover;
+}
+
+.post-card__avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #2563eb;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.post-card__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.post-card__username {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.post-card__time {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.post-card__content {
+    white-space: pre-wrap;
+    color: #111827;
+    line-height: 1.5;
+}
