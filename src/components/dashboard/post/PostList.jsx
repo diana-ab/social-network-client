@@ -14,7 +14,6 @@ function PostList({ posts = [] }) {
     const sortedPosts = [...posts].sort((firstPost, secondPost) => {
         const firstCreatedAt = new Date(firstPost.createdAt);
         const secondCreatedAt = new Date(secondPost.createdAt);
-        console.log(firstCreatedAt, secondCreatedAt);
         return secondCreatedAt - firstCreatedAt;
     });
 
