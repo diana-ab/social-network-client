@@ -1,0 +1,22 @@
+.feed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 32px 16px;
+}
+
+.feed-header__left {
+    display: flex;
+    align-items: center;
+}
+
+.feed-header__right {
+    display: flex;
+    align-items: center;
+}
+
+.feed-header__logo {
+    margin: 0;
+    font-size: 40px;
+    font-weight: 700;
+}

@@ -1,0 +1,26 @@
+.profile-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-card__actions {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.profile-card__image-editor {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-card__image-editor-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.profile-card__error {
+    color: #c62828;
+    font-size: 14px;
+}

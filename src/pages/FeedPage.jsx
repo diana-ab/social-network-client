@@ -1,52 +1,14 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../api/axiosClient";
-import { logoutUser } from "../features/auth/services/authService.js";
+
 import FeedBody from "../features/feed/components/layout/FeedBody.jsx";
+import FeedHeader from "../features/feed/components/layout/FeedHeader.jsx";
 
 
 
 function FeedPage() {
-    const [message, setMessage] = useState("Loading...");
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        api.get("/test")
-            .then((response) => {
-                setMessage(response.data);
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-                setMessage("Failed to load feed");
-            });
-    }, []);
-
-    const handleLogout = async () => {
-        try {
-            await logoutUser();
-            navigate("/login", { replace: true });
-        } catch (error) {
-            console.error("Logout failed", error);
-        }
-    };
-
-
-
-
-
-
     return (
-        <div >
-            <h1>Feed</h1>
-            <button onClick={handleLogout}>Logout</button>
-            <p>{message}</p>
-            <div>
-                <FeedBody/>
-            </div>
-
-
-
-
+        <div className="feed-page">
+            <FeedHeader />
+            <FeedBody />
         </div>
     );
 }

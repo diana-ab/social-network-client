@@ -40,3 +40,10 @@ export async function getMyProfile() {
     const response = await api.get("/dashboard/me");
     return response.data;
 }
+
+export async function updateProfileImage(profileImageUrl) {
+    const response = await api.put("/dashboard/profile-image", {
+        profileImageUrl,
+    });
+    return response.data;
+}

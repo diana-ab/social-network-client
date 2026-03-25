@@ -1,34 +1,35 @@
 import "../../styles/UserCardBase.css";
-import {DEFAULT_USERNAME_FALLBACK} from "../../utils/feedConstant.js";
+import { DEFAULT_USERNAME_FALLBACK } from "../../utils/feedConstant.js";
 
-
-function UserCardBase({user, rightContent, onClick, className=""}) {
+function UserCardBase({ user, rightContent, onClick, className = "" }) {
     if (!user) {
-        return null
+        return null;
     }
-
-    const firstLetter = user.username ? user.username.charAt(0).toUpperCase() : DEFAULT_USERNAME_FALLBACK;
+    const username = user.username || DEFAULT_USERNAME_FALLBACK;
+    const firstLetter = username.charAt(0).toUpperCase();
+    const profileImage = user.profilePicture || user.profileImage || "";
 
     return (
         <div
             className={`user-card-base ${className}`.trim()}
-            onClick={onClick}>
-
+            onClick={onClick}
+        >
             <div className="user-card-base__left">
-                {user.profileImage ? (
-                    <img
-                        className="user-card-base__image"
-                        src={user.profileImage}
-                        alt={user.username}
-                    />) :
-                    (<div className="user-card-base__avatar-fallback">
+                {profileImage ? (
+                    <img className="user-card-base__image"
+                        src={profileImage}
+                        alt={username}
+                    />) : (
+                    <div className="user-card-base__avatar-fallback">
                         {firstLetter}
                     </div>)}
-
                 <span className="user-card-base__username">
-                    {user.username}
-                </span></div>
-            <div className="user-card-base__right">{rightContent}</div>
+                    {username}
+                </span>
+            </div>
+            <div className="user-card-base__right">
+                {rightContent}
+            </div>
         </div>
     );
 }
