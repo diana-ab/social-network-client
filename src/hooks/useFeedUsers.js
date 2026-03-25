@@ -30,8 +30,6 @@ function useFeedUsers() {
                     setError(result.errorCode)
 
                 }
-
-
             } catch (error) {
                 console.error("Failed to search users", error);
                 setError("Failed to load users");
@@ -41,6 +39,10 @@ function useFeedUsers() {
         };
         loadUsers();
     }, [searchTerm]);
+
+
+
+
 
     const handleFollowUser = async (selectedUser) => {
         try {
