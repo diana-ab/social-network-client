@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import {searchUsers} from "../services/feedService.js";
+
 
 function useFeedUsers() {
     const [searchTerm, setSearchTerm] = useState("");
@@ -12,14 +14,23 @@ function useFeedUsers() {
                 setUsers([]);
                 return;
             }
-
             try {
                 setIsLoading(true);
                 setError("");
+                const result = await searchUsers(
+                    {
+                        text: searchTerm,});
+            console.log(result);
+                if(result.success){
+                    console.log(result.users);
+                    setUsers(result.users);
+                    setIsLoading(false)
+                }
+                else {
+                    setError(result.errorCode)
 
-                // כאן בהמשך תהיה קריאת שרת אמיתית
-                // const data = await searchUsers(searchTerm);
-                // setUsers(data);
+                }
+
 
             } catch (error) {
                 console.error("Failed to search users", error);

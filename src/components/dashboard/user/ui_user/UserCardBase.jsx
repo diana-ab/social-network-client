@@ -6,6 +6,7 @@ function UserCardBase({user, rightContent, onClick, className}) {
     if (!user) {
         return null
     }
+    const id = user.id;
     const firstLetter = user.username ? user.username.charAt(0).toUpperCase() : DEFAULT_USERNAME_FALLBACK;
 
     return (

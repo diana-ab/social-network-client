@@ -1,11 +1,9 @@
+import api from "../api/axiosClient";
 
 
-import api from "./axiosClient.js";
 
-export const searchUsers = async (searchTerm) => {
-    const response = await api.get("/SOME-ENDPOINT", {
-        params: { q: searchTerm },
-    });
+export const searchUsers = async (data) => {
+    const response = await api.post("/follows/search", data);
     return response.data;
 };
 

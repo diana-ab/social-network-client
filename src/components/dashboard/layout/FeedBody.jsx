@@ -19,6 +19,8 @@ function FeedBody() {
                 users={users}
                 onFollowUser={handleFollowUser}
                 onUnfollowUser={handleUnfollowUser}
+                isLoading={isLoading}
+                error={error}
             />
         </div>
     );
