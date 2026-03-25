@@ -1,7 +1,7 @@
 import { useNavigate, Link } from "react-router-dom";
-import { sendRegisterCode } from "../services/authService";
-import DynamicForm from "../components/ui/form/DynamicForm.jsx";
-import useAuthForm from "../hooks/useAuthForm";
+import { sendRegisterCode } from "../features/auth/services/authService.js";
+import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
+import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 
 function RegisterPage() {
     const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import { verifyRegisterCode } from "../services/authService";
-import DynamicForm from "../components/ui/form/DynamicForm.jsx";
-import useAuthForm from "../hooks/useAuthForm";
+import { verifyRegisterCode } from "../features/auth/services/authService.js";
+import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
+import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 
 function RegisterVerifyPage() {
     const location = useLocation();

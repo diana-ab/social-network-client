@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, Link } from "react-router-dom";
-import {sendLoginCode, verifyLoginCode} from "../services/authService";
-import DynamicForm from "../components/ui/form/DynamicForm.jsx";
-import useAuthForm from "../hooks/useAuthForm";
-import AskForCodeSection from "../components/atuh/AskForCodeSection.jsx";
+import {sendLoginCode, verifyLoginCode} from "../features/auth/services/authService.js";
+import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
+import useAuthForm from "../features/auth/hooks/useAuthForm.js";
+import AskForCodeSection from "../features/auth/components/AskForCodeSection.jsx";
 
 function LoginVerifyPage() {
     const location = useLocation();

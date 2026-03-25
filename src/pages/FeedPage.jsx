@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axiosClient";
-import { logoutUser } from "../services/authService";
-import FeedBody from "../components/dashboard/layout/FeedBody.jsx";
+import { logoutUser } from "../features/auth/services/authService.js";
+import FeedBody from "../features/feed/components/layout/FeedBody.jsx";
 
 
 
