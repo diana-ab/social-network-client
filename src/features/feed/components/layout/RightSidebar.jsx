@@ -2,22 +2,33 @@ import UserSearch from "../users/UserSearch.jsx";
 import SearchResultsList from "../users/SearchResultsList.jsx";
 import "../../styles/RightSidebar.css";
 
-function RightSidebar({searchTerm, onSearchChange, users,
-                          onFollowUser, onUnfollowUser,isLoading, error,}) {
+function RightSidebar({searchTerm, onSearchChange, users, onFollowUser, onUnfollowUser, isSearching, pendingUserId, error,}) {
+
+
+    const hasSearchTerm = searchTerm.trim().length > 0;
 
     return (
         <aside className="right-sidebar">
             <div className="right-sidebar__search">
-                <UserSearch value={searchTerm}
-                    onChange={onSearchChange}/>
+                <UserSearch
+                    value={searchTerm}
+                    onChange={onSearchChange}
+                />
             </div>
-            {isLoading && <p>Loading...</p>}
-            {error && <p>{error}</p>}
-            <div className="right-sidebar__results">
-                <SearchResultsList users={users}
-                    onFollowUser={onFollowUser}
-                    onUnfollowUser={onUnfollowUser}/>
 
+            <div className="right-sidebar__results">
+                {!hasSearchTerm && <p>Start typing to search users</p>}
+                {hasSearchTerm && isSearching && <p>Loading...</p>}
+                {hasSearchTerm && error && <p>{error}</p>}
+                {hasSearchTerm && !isSearching && !error && (
+
+                    <SearchResultsList
+                        users={users}
+                        onFollowUser={onFollowUser}
+                        onUnfollowUser={onUnfollowUser}
+                        pendingUserId={pendingUserId}
+                    />
+                )}
             </div>
         </aside>
     );

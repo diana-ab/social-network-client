@@ -6,20 +6,22 @@ import useFeedUsers from "../../hooks/useFeedUsers.js";
 
 
 function FeedBody() {
-    const {searchTerm,
-        setSearchTerm, users, handleFollowUser, handleUnfollowUser, isLoading, error,} = useFeedUsers();
+    const {searchTerm, setSearchTerm, users, isSearching, pendingUserId,
+        error, handleFollowUser, handleUnfollowUser,} = useFeedUsers();
 
     return (
         <div className="feed-body">
-            <LeftSidebar />
+            <LeftSidebar/>
+
             <FeedMain />
             <RightSidebar
                 searchTerm={searchTerm}
-                onSearchChange={(event) => setSearchTerm(event.target.value)}
+                onSearchChange={(e) => setSearchTerm(e.target.value)}
                 users={users}
                 onFollowUser={handleFollowUser}
                 onUnfollowUser={handleUnfollowUser}
-                isLoading={isLoading}
+                isSearching={isSearching}
+                pendingUserId={pendingUserId}
                 error={error}
             />
         </div>

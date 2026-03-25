@@ -1,34 +1,35 @@
 import ProfileCard from "../users/ProfileCard.jsx";
 import FollowingList from "../users/FollowingList.jsx";
+import useLeftSidebarData from "../../hooks/useLeftSidebarData.js";
 
 function LeftSidebar() {
-    const currentUser = {
-        id: 1,
-        username: "shimon",
-        profileImage: "",
-    };
+    const {
+        currentUser,
+        followingUsers,
+        isLoadingLeftSidebar,
+        leftSidebarError,
+    } = useLeftSidebarData();
 
-    const followingUsers = [
-        { id: 2, username: "diana", profileImage: "" },
-        { id: 3, username: "kloy", profileImage: "" },
-        { id: 4, username: "shimon2", profileImage: "" },
-    ];
+    if (isLoadingLeftSidebar) {
+        return (
+            <aside className="left-sidebar">
+                <p>Loading left sidebar...</p>
+            </aside>
+        );
+    }
 
-    const handleUserClick = (user) => {
-        console.log("Clicked user:", user);
-    };
+    if (leftSidebarError) {
+        return (
+            <aside className="left-sidebar">
+                <p>{leftSidebarError}</p>
+            </aside>
+        );
+    }
 
     return (
         <aside className="left-sidebar">
-            <ProfileCard
-                user={currentUser}
-                onClick={() => handleUserClick(currentUser)}/>
-
-            <section className="left-sidebar__following-section">
-                <h3 className="left-sidebar__title">Following</h3>
-                <FollowingList users={followingUsers}
-                    onClickOnUser={handleUserClick}/>
-            </section>
+            <ProfileCard user={currentUser} />
+            <FollowingList users={followingUsers} />
         </aside>
     );
 }
