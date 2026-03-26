@@ -1,6 +1,6 @@
-import { useEffect } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
-import { completeRegister } from "../features/auth/services/authService.js";
+import {useEffect} from "react";
+import {useLocation, useNavigate, Link} from "react-router-dom";
+import {completeRegister} from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 
@@ -25,8 +25,8 @@ function RegisterCompletePage() {
 
     useEffect(() => {
         if (!registrationToken) {
-            console.log("Registration Token not set   "  , registrationToken);
-            navigate("/register", { replace: true });
+            console.log("Registration Token not set   ", registrationToken);
+            navigate("/register", {replace: true});
         }
     }, [registrationToken, navigate]);
 
@@ -71,7 +71,7 @@ function RegisterCompletePage() {
             });
 
             if (result.success) {
-                navigate("/login", { replace: true });
+                navigate("/login", {replace: true});
             } else {
                 setErrorCodeMessage(result.errorCode);
             }

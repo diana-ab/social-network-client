@@ -1,5 +1,5 @@
-import { useNavigate, Link } from "react-router-dom";
-import { loginUser } from "../features/auth/services/authService.js";
+import {useNavigate, Link} from "react-router-dom";
+import {loginUser} from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 
@@ -45,7 +45,7 @@ function LoginPage() {
             if (result.success) {
                 navigate("/login/verify", {
                     state: {
-                        tempToken:result.tempToken,
+                        tempToken: result.tempToken,
                     },
                 });
             } else {
@@ -73,4 +73,5 @@ function LoginPage() {
         />
     );
 }
+
 export default LoginPage;

@@ -1,5 +1,5 @@
-import { useNavigate, Link } from "react-router-dom";
-import { sendRegisterCode } from "../features/auth/services/authService.js";
+import {useNavigate, Link} from "react-router-dom";
+import {sendRegisterCode} from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 
@@ -38,7 +38,7 @@ function RegisterPage() {
 
             if (result.success) {
                 navigate("/register/verify", {
-                    state: { email: formData.email },
+                    state: {email: formData.email},
                 });
             } else {
                 setErrorCodeMessage(result.errorCode);

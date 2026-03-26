@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import {useEffect} from "react";
+import {useLocation, useNavigate, Link} from "react-router-dom";
 import {sendLoginCode, verifyLoginCode} from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
@@ -22,7 +22,7 @@ function LoginVerifyPage() {
 
     useEffect(() => {
         if (!tempToken) {
-            navigate("/login", { replace: true });
+            navigate("/login", {replace: true});
         }
     }, [tempToken, navigate]);
 
@@ -47,7 +47,7 @@ function LoginVerifyPage() {
             });
 
             if (result.success) {
-                navigate("/feed", { replace: true });
+                navigate("/feed", {replace: true});
             } else {
                 setErrorCodeMessage(result.errorCode);
             }
@@ -68,10 +68,11 @@ function LoginVerifyPage() {
             extraContent={
                 <AskForCodeSection
                     sendCodeFunction={sendLoginCode}
-                    requestData={{ tempToken }}
+                    requestData={{tempToken}}
                     setErrorCodeMessage={setErrorCodeMessage}
                     setApiErrorMessage={setApiErrorMessage}
-                    setSuccessMessage={() => {}}
+                    setSuccessMessage={() => {
+                    }}
                 />
             }
             footer={
