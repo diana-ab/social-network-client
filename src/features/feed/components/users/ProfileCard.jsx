@@ -1,23 +1,17 @@
-import UserCardBase from "./UserCardBase.jsx";
+import ProfileCardBase from "./ProfileCardBase.jsx";
 import CustomButton from "../../../../shared/ui/button/CustomButton.jsx";
 import CustomInput from "../../../../shared/ui/input/CustomInput.jsx";
-import {useState} from "react";
+import { useState } from "react";
 import "../../styles/ProfileCard.css";
 
+function ProfileCard({user, onClick, isUpdatingProfileImage = false, updateProfileImageError = "",
+                         onSaveProfileImage, onClearProfileImageError,}) {
 
-function ProfileCard({
-                         user,
-                         onClick,
-                         isUpdatingProfileImage = false,
-                         updateProfileImageError = "",
-                         onSaveProfileImage,
-                         onClearProfileImageError,
-                     }) {
     const [isImageEditorOpen, setIsImageEditorOpen] = useState(false);
     const [profileImageUrlInput, setProfileImageUrlInput] = useState("");
 
     const handleOpenImageEditor = () => {
-        setProfileImageUrlInput(user?.profilePicture || "");
+        setProfileImageUrlInput(user?.profilePicture || user?.profileImage || "");
         onClearProfileImageError?.();
         setIsImageEditorOpen(true);
     };
@@ -38,7 +32,7 @@ function ProfileCard({
 
     return (
         <div className="profile-card">
-            <UserCardBase
+            <ProfileCardBase
                 user={user}
                 onClick={onClick}
                 className="profile-card__user-card"
