@@ -1,56 +1,56 @@
-export const AUTH_ERRORS = {
-    INVALID_REQUEST: 1000,
+import { ERROR_CODES } from "../constants/errorCodes.js";
 
-    MISSING_USERNAME: 1001,
-    INVALID_USERNAME: 1002,
+export const ERROR_MESSAGES = {
+    [ERROR_CODES.INVALID_REQUEST]: "Invalid request.",
 
-    MISSING_PASSWORD: 1003,
-    INVALID_PASSWORD: 1004,
+    [ERROR_CODES.MISSING_USERNAME]: "Username is required.",
+    [ERROR_CODES.INVALID_USERNAME]: "Invalid username.",
 
-    MISSING_EMAIL: 1005,
-    INVALID_EMAIL: 1006,
+    [ERROR_CODES.MISSING_PASSWORD]: "Password is required.",
+    [ERROR_CODES.INVALID_PASSWORD]: "Invalid password.",
 
-    USERNAME_ALREADY_EXISTS: 2000,
-    EMAIL_ALREADY_EXISTS: 2001,
-    USER_ALREADY_EXISTS: 2002,
+    [ERROR_CODES.MISSING_EMAIL]: "Email is required.",
+    [ERROR_CODES.INVALID_EMAIL]: "Invalid email address.",
+    [ERROR_CODES.INVALID_SEND_CODE]: "Invalid verification code.",
 
-    INVALID_CREDENTIALS: 3000,
+    [ERROR_CODES.USERNAME_ALREADY_EXISTS]: "Username already exists.",
+    [ERROR_CODES.EMAIL_ALREADY_EXISTS]: "Email already exists.",
+    [ERROR_CODES.USER_ALREADY_EXISTS]: "User already exists.",
 
-    REGISTRATION_FAILED: 4000,
-    INTERNAL_SERVER_ERROR: 5000,
+    [ERROR_CODES.INVALID_CREDENTIALS]: "Invalid username or password.",
 
-    INVALID_TOKEN: 6000,
+    [ERROR_CODES.REGISTRATION_FAILED]: "Registration failed.",
+    [ERROR_CODES.INVALID_POST]: "Invalid post.",
+
+    [ERROR_CODES.INTERNAL_SERVER_ERROR]: "Internal server error.",
+
+    [ERROR_CODES.INVALID_TOKEN]: "Your session has expired. Please log in again.",
+    [ERROR_CODES.UNAUTHORIZED]: "You are not authorized. Please log in again.",
+    [ERROR_CODES.FORBIDDEN]: "You are not allowed to perform this action.",
+
+    [ERROR_CODES.INVALID_PROFILE_IMAGE]: "Invalid profile image URL.",
+    [ERROR_CODES.FOLLOW_FAILURE]: "Failed to follow user.",
+    [ERROR_CODES.UNFOLLOW_FAILURE]: "Failed to unfollow user.",
+    [ERROR_CODES.POST_FAILURE]: "Failed to create post.",
+    [ERROR_CODES.POST_DELETE_FAILURE]: "Failed to delete post.",
+    [ERROR_CODES.USER_NOT_FOUND]: "User not found.",
+    [ERROR_CODES.POST_NOT_FOUND]: "Post not found.",
 };
 
-export const AUTH_ERROR_MESSAGES = {
-    [AUTH_ERRORS.INVALID_REQUEST]: "Invalid request.",
-
-    [AUTH_ERRORS.MISSING_USERNAME]: "Username is required.",
-    [AUTH_ERRORS.INVALID_USERNAME]: "Invalid username.",
-
-    [AUTH_ERRORS.MISSING_PASSWORD]: "Password is required.",
-    [AUTH_ERRORS.INVALID_PASSWORD]: "Invalid password.",
-
-    [AUTH_ERRORS.MISSING_EMAIL]: "Email is required.",
-    [AUTH_ERRORS.INVALID_EMAIL]: "Invalid email.",
-
-    [AUTH_ERRORS.USERNAME_ALREADY_EXISTS]: "Username already exists.",
-    [AUTH_ERRORS.EMAIL_ALREADY_EXISTS]: "Email already exists.",
-    [AUTH_ERRORS.USER_ALREADY_EXISTS]: "User already exists.",
-
-    [AUTH_ERRORS.INVALID_CREDENTIALS]: "Invalid username or password.",
-
-    [AUTH_ERRORS.REGISTRATION_FAILED]: "Registration failed.",
-    [AUTH_ERRORS.INTERNAL_SERVER_ERROR]: "Internal server error.",
-
-    [AUTH_ERRORS.INVALID_TOKEN]: "Invalid token.",
-};
-
-export function getAuthErrorMessage(errorCode) {
-    return AUTH_ERROR_MESSAGES[errorCode] || "Something went wrong.";
+export function getErrorMessageByCode(errorCode) {
+    return ERROR_MESSAGES[errorCode] || "Something went wrong.";
 }
 
 export function getMessageFromApiError(error) {
     const errorCode = error?.response?.data?.errorCode;
-    return getAuthErrorMessage(errorCode);
+
+    if (errorCode) {
+        return getErrorMessageByCode(errorCode);
+    }
+
+    if (error?.message === "Network Error") {
+        return "Unable to connect to the server. Please try again.";
+    }
+
+    return "Something went wrong.";
 }

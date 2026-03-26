@@ -58,7 +58,7 @@ function LoginPage() {
 
     return (
         <DynamicForm
-            title="Log into MySN"
+            title="Log into The Empire"
             formData={formData}
             setFormData={setFormData}
             fields={fields}

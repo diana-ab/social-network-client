@@ -1,31 +1,25 @@
 import { useState } from "react";
-import { getAuthErrorMessage, getMessageFromApiError } from "../../../shared/utils/errorMessages.js";
+import useErrorMessage from "../../../shared/hooks/useErrorMessage.js";
 
 function useAuthForm(initialFormData) {
     const [formData, setFormData] = useState(initialFormData);
-    const [message, setMessage] = useState("");
 
-    const clearMessage = () => {
-        setMessage("");
-    };
-
-    const setErrorCodeMessage = (errorCode) => {
-        setMessage(getAuthErrorMessage(errorCode));
-    };
-
-    const setApiErrorMessage = (error) => {
-        console.log("API error:", error);
-        setMessage(getMessageFromApiError(error));
-    };
+    const {
+        errorMessage: message,
+        setErrorMessage: setMessage,
+        clearErrorMessage,
+        setErrorMessageByCode,
+        setErrorMessageFromApiError,
+    } = useErrorMessage();
 
     return {
         formData,
         setFormData,
         message,
         setMessage,
-        clearMessage,
-        setErrorCodeMessage,
-        setApiErrorMessage,
+        clearMessage: clearErrorMessage,
+        setErrorCodeMessage: setErrorMessageByCode,
+        setApiErrorMessage: setErrorMessageFromApiError,
     };
 }
 

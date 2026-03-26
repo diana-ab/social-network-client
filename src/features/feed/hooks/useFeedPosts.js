@@ -1,112 +1,70 @@
-import {useEffect, useState} from "react";
-import {createPost, getFeedPosts, getMyProfile} from "../services/feedService.js";
+import { useEffect, useState } from "react";
+import { createPost, getFeedPosts } from "../services/feedService.js";
+import useErrorMessage from "../../../shared/hooks/useErrorMessage.js";
+import { FEED_MESSAGES } from "../../../shared/constants/messages.js";
 
 function useFeedPosts() {
     const [postText, setPostText] = useState("");
     const [posts, setPosts] = useState([]);
     const [isCreatingPost, setIsCreatingPost] = useState(false);
     const [isLoadingPosts, setIsLoadingPosts] = useState(false);
-    const [createPostError, setCreatePostError] = useState("");
-    const [loadPostsError, setLoadPostsError] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
 
-    // const [currentUser, setCurrentUser] = useState(null);
-    // קשור לזימון לזה שעם אני לא רוצהל זמן פיד ישר בכל יצירת פוסט חדש
+    const {
+        errorMessage,
+        setErrorMessage,
+        clearErrorMessage,
+        setErrorMessageFromApiError,
+    } = useErrorMessage();
 
     useEffect(() => {
         loadFeedPosts();
-
-        // loadInitialData()
-
     }, []);
 
-
-    // const loadInitialData = async () => {
-    //     setIsLoadingPosts(true);
-    //     setLoadPostsError("");
-    //     try {
-    //         const [feedResponse, userResponse] = await Promise.all([
-    //             getFeedPosts(),
-    //             getMyProfile(),
-    //         ]);
-    //         if (!feedResponse.success) {
-    //             setLoadPostsError("Failed to load feed posts");
-    //             return;
-    //         }
-    //         setPosts(feedResponse.posts || []);
-    //         if (userResponse.success) {
-    //             setCurrentUser(userResponse.user);
-    //         }
-    //     } catch (error) {
-    //         setLoadPostsError("Failed to load data");
-    //     } finally {
-    //         setIsLoadingPosts(false);
-    //     }
-    // };
-
-
-
-
-
-
+    const clearMessages = () => {
+        clearErrorMessage();
+        setSuccessMessage("");
+    };
 
     const loadFeedPosts = async () => {
         setIsLoadingPosts(true);
-        setLoadPostsError("");
+        clearMessages();
+
         try {
             const response = await getFeedPosts();
-            if (!response.success) {
-                setLoadPostsError("Failed to load feed posts");
-                return;
-            }
             setPosts(response.posts || []);
         } catch (error) {
-            setLoadPostsError("Failed to load feed posts");
+            setErrorMessageFromApiError(error);
         } finally {
             setIsLoadingPosts(false);
         }
     };
 
-
     const handlePostTextChange = (event) => {
         setPostText(event.target.value);
-        if (createPostError) {
-            setCreatePostError("");
+        if (errorMessage || successMessage) {
+            clearMessages();
         }
     };
 
-
-
     const handleCreatePost = async () => {
         const trimmedPostText = postText.trim();
+
         if (!trimmedPostText) {
-            setCreatePostError("Post content cannot be empty");
-            return;}
+            setErrorMessage(FEED_MESSAGES.EMPTY_POST);
+            return;
+        }
 
         setIsCreatingPost(true);
-        setCreatePostError("");
+        clearMessages();
+
         try {
-            const response = await createPost(trimmedPostText);
-            console.log(response);
-            if (!response.success) {
-                setCreatePostError("Failed to create post");
-                return;
-            }
-
-            // יש את השיטה הזאת לייצר פוסט חדש ממש דומה למה שאתה יוצר ולא צריך לזמן את הפיד כל הזמן ישר
-            // const newPost = {
-            //     id: Date.now(),
-            //     content: trimmedPostText,
-            //     createdAt: new Date().toISOString(),
-            //     username: currentUser?.username || "you",
-            //     profilePicture: currentUser?.profileImageUrl || "",
-            // };
-            //setPosts((prev) => [newPost, ...prev]);
-
-            // או לחכות לעדכון מהפיד וזה יכול להיות עדיף מהבחינה שעם נוסיף לייק ומחיקה
+            await createPost(trimmedPostText);
             await loadFeedPosts();
             setPostText("");
+            setSuccessMessage(FEED_MESSAGES.CREATE_POST_SUCCESS);
         } catch (error) {
-            setCreatePostError("Failed to create post");
+            setErrorMessageFromApiError(error);
         } finally {
             setIsCreatingPost(false);
         }
@@ -117,8 +75,8 @@ function useFeedPosts() {
         posts,
         isCreatingPost,
         isLoadingPosts,
-        createPostError,
-        loadPostsError,
+        errorMessage,
+        successMessage,
         handlePostTextChange,
         handleCreatePost,
         loadFeedPosts,

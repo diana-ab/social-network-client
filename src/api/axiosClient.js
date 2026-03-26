@@ -8,6 +8,22 @@ const api = axios.create({
         "Content-Type": "application/json"
     }
 });
+api.interceptors.response.use(
+    (response) => {
+        if (response?.data?.success === false) {
+            return Promise.reject({
+                response: {
+                    data: response.data,
+                    status: response.status,
+                },
+            });
+        }
+
+        return response;
+    },
+    (error) => Promise.reject(error)
+);
+
 //
 // let isRefreshing = false;
 // let pendingRequests = [];
