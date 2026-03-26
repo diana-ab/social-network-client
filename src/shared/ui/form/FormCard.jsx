@@ -8,5 +8,4 @@ function FormCard({ title, children }) {
         </div>
     );
 }
-//הקומפוננטה הזאת היא המסגרת של כל קומפוננטה או קומפוננטות שהיא עוטפת
 export default FormCard;

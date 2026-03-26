@@ -11,8 +11,6 @@ function UserSearch({value, onChange}) {
                 placeholder="Search users..."
             />
     </div>
-
-
     );
 }
 export default UserSearch;

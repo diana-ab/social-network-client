@@ -1,70 +1,17 @@
 import axios from "axios";
-// import {redirectToLogin} from "../utils/navigation.js";
+import {attachAuthInterceptor} from "./interceptors/authInterceptor.js";
 
-const api = axios.create({
+const config = {
     baseURL: "http://localhost:8081",
     withCredentials: true,
     headers: {
-        "Content-Type": "application/json"
-    }
-});
-api.interceptors.response.use(
-    (response) => {
-        if (response?.data?.success === false) {
-            return Promise.reject({
-                response: {
-                    data: response.data,
-                    status: response.status,
-                },
-            });
-        }
-
-        return response;
+        "Content-Type": "application/json",
     },
-    (error) => Promise.reject(error)
-);
+};
 
-//
-// let isRefreshing = false;
-// let pendingRequests = [];
+const api = axios.create(config);
+const refreshApi = axios.create(config);
 
-// api.interceptors.response.use(
-//     async (response) => {
-//         if (
-//             response.config.url !== "/refresh" &&
-//             response.data &&
-//             response.data.success === false
-//         ) {
-//             if (!isRefreshing) {
-//                 isRefreshing = true;
-//                 try {
-//                     const refreshResponse = await api.post("/refresh");
-//                     if (refreshResponse.data?.success) {
-//                         isRefreshing = false;
-//                         pendingRequests.forEach((callback) => callback());
-//                         pendingRequests = [];
-//                         return api(response.config);
-//                     }
-//
-//                 } catch (refreshError) {
-//                     isRefreshing = false;
-//                     redirectToLogin();
-//                     return Promise.reject(refreshError);
-//                 }
-//             }
-//             return new Promise((resolve) => {
-//                 pendingRequests.push(() => {
-//                     resolve(api(response.config));
-//                 });
-//             });
-//         }
-//         return response;
-//     },
-//
-//     (error) => {
-//         console.error("API error:", error);
-//         return Promise.reject(error);
-//     }
-// );
+attachAuthInterceptor(api, refreshApi);
 
 export default api;

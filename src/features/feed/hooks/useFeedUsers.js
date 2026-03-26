@@ -1,76 +1,76 @@
 import { useEffect, useState } from "react";
 import { followUser, searchUsers, unfollowUser } from "../services/feedService.js";
+import useErrorMessage from "../../../shared/hooks/useErrorMessage.js";
 
-function useFeedUsers() {
+function useFeedUsers(onFollowChanged) {
     const [searchTerm, setSearchTerm] = useState("");
     const [users, setUsers] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
     const [pendingUserId, setPendingUserId] = useState(null);
-    const [error, setError] = useState("");
+
+    const {
+        errorMessage,
+        clearErrorMessage,
+        setErrorMessageFromApiError,
+    } = useErrorMessage();
 
     useEffect(() => {
         const loadUsers = async () => {
             if (!searchTerm.trim()) {
                 setUsers([]);
-                setError("");
+                clearErrorMessage();
                 return;
             }
+
             try {
                 setIsSearching(true);
-                setError("");
+                clearErrorMessage();
+
                 const result = await searchUsers(searchTerm);
-                console.log(result);
-                if (result.success) {
-                    setUsers(result.users || []);
-                } else {
-                    setUsers([]);
-                    setError(result.errorCode || "Search failed");
-                }
+                setUsers(result.users || []);
             } catch (error) {
-                console.error("Failed to search users", error);
                 setUsers([]);
-                setError("Failed to load users");
+                setErrorMessageFromApiError(error);
             } finally {
                 setIsSearching(false);
             }
         };
+
         loadUsers();
     }, [searchTerm]);
-
 
     const handleFollowUser = async (selectedUser) => {
         try {
             setPendingUserId(selectedUser.id);
-            setError("");
-            const result = await followUser(selectedUser.id);
-            if (!result.success) {
-                setError(result.errorCode || "Follow failed");
-                return;
-            }
+            clearErrorMessage();
+
+            await followUser(selectedUser.id);
+
             setUsers((prevUsers) =>
                 prevUsers.map((user) =>
                     user.id === selectedUser.id
                         ? { ...user, following: true }
-                        : user)
+                        : user
+                )
             );
+
+            if (onFollowChanged) {
+                onFollowChanged();
+            }
         } catch (error) {
-            console.error("Follow failed", error);
-            setError("Follow failed");
+            setErrorMessageFromApiError(error);
         } finally {
             setPendingUserId(null);
         }
     };
 
-
     const handleUnfollowUser = async (selectedUser) => {
         try {
             setPendingUserId(selectedUser.id);
-            setError("");
-            const result = await unfollowUser(selectedUser.id);
-            if (!result.success) {
-                setError(result.errorCode || "Unfollow failed");
-                return;
-            }
+            clearErrorMessage();
+
+            await unfollowUser(selectedUser.id);
+
             setUsers((prevUsers) =>
                 prevUsers.map((user) =>
                     user.id === selectedUser.id
@@ -78,9 +78,12 @@ function useFeedUsers() {
                         : user
                 )
             );
+
+            if (onFollowChanged) {
+                onFollowChanged();
+            }
         } catch (error) {
-            console.error("Unfollow failed", error);
-            setError("Unfollow failed");
+            setErrorMessageFromApiError(error);
         } finally {
             setPendingUserId(null);
         }
@@ -92,7 +95,7 @@ function useFeedUsers() {
         users,
         isSearching,
         pendingUserId,
-        error,
+        errorMessage,
         handleFollowUser,
         handleUnfollowUser,
     };

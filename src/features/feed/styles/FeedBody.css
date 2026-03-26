@@ -1,5 +1,3 @@
-
-
 .feed-body {
     width: min(calc(100% - (2 * var(--app-gutter))), var(--app-shell-max-width));
     margin: 0 auto;
@@ -9,20 +7,16 @@
     grid-template-columns: 320px minmax(0, 1fr) 340px;
     gap: var(--app-gutter);
 
-    /* Make columns fill the available height */
     align-items: stretch;
 
-    /* Critical for nested scroll containers */
     min-height: 0;
 }
 
-/* Allow content to shrink in grid columns */
 .feed-body > * {
     min-width: 0;
     min-height: 0;
 }
 
-/* Optional: mild responsiveness without breaking the shell */
 @media (max-width: 1100px) {
     .feed-body {
         grid-template-columns: 300px minmax(0, 1fr) 320px;

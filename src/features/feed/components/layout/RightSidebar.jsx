@@ -3,11 +3,7 @@ import SearchResultsList from "../users/SearchResultsList.jsx";
 import "../../styles/RightSidebar.css";
 
 function RightSidebar({searchTerm, onSearchChange, users, onFollowUser, onUnfollowUser, isSearching, pendingUserId, error,}) {
-
-
     const hasSearchTerm = searchTerm.trim().length > 0;
-
-
 
     return (
         <aside className="right-sidebar">

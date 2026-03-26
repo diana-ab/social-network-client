@@ -1,15 +1,10 @@
-
 import ProfileCard from "../users/ProfileCard.jsx";
 import FollowingList from "../users/FollowingList.jsx";
 import useLeftSidebarData from "../../hooks/useLeftSidebarData.js";
 import "../../styles/LeftSidebar.css";
 
-function LeftSidebar() {
-    const {currentUser, followingUsers, isLoadingLeftSidebar, leftSidebarError, isUpdatingProfileImage,
-        updateProfileImageError, handleUpdateProfileImage, clearUpdateProfileImageError,} = useLeftSidebarData();
-
-
-
+function LeftSidebar({ refreshKey }) {
+    const {currentUser, followingUsers, isLoadingLeftSidebar, leftSidebarError, isUpdatingProfileImage, updateProfileImageError, handleUpdateProfileImage, clearUpdateProfileImageError,} = useLeftSidebarData(refreshKey);
 
     if (isLoadingLeftSidebar) {
         return (
@@ -18,11 +13,13 @@ function LeftSidebar() {
             </aside>
         );
     }
+
     if (leftSidebarError) {
         return (
             <aside className="left-sidebar">
                 <p className="left-sidebar__error">{leftSidebarError}</p>
-            </aside>);
+            </aside>
+        );
     }
 
     return (
@@ -34,15 +31,14 @@ function LeftSidebar() {
                 onSaveProfileImage={handleUpdateProfileImage}
                 onClearProfileImageError={clearUpdateProfileImageError}
             />
+
             <div className="left-sidebar__following-title">Following</div>
+
             <div className="left-sidebar__following-list" role="region" aria-label="Following list">
                 <FollowingList users={followingUsers} />
             </div>
         </aside>
     );
-
-
-
 }
 
 export default LeftSidebar;

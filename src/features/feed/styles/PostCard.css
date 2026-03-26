@@ -1,5 +1,3 @@
-
-
 .post-card {
     background: var(--roman-parchment);
     border: 1px solid var(--roman-border);
@@ -69,8 +67,6 @@
     white-space: pre-wrap;
     color: var(--roman-text);
     line-height: 1.55;
-
-    /* Prevent long words / URLs from breaking the layout */
     overflow-wrap: anywhere;
     word-break: break-word;
 }

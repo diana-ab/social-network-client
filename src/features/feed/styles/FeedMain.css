@@ -21,7 +21,6 @@
     min-height: 0;
     overflow: auto;
 
-    /* Prevent minor width shifts when scrollbars appear */
     scrollbar-gutter: stable;
 
     padding-right: 4px;

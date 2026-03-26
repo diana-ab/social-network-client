@@ -5,5 +5,4 @@ function FormMessage({ message }) {
     return <p className="form-message">{message}</p>;
 
 }
-
 export default FormMessage;

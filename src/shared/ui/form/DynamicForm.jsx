@@ -24,12 +24,12 @@ function DynamicForm({
     };
 
     const isFormIncomplete = fields.some((field) => {
-        if (!field.required) {return false;}
+        if (!field.required) {
+            return false;
+        }
         const value = formData[field.name] || "";
         return value.trim() === "";
     });
-
-
 
     return (
         <div className="auth-page">
@@ -53,7 +53,7 @@ function DynamicForm({
                         {buttonText}
                     </CustomButton>
 
-                    <FormMessage message={message} />
+                    <FormMessage message={message}/>
 
                     {extraContent}
                     {footer}
@@ -61,10 +61,6 @@ function DynamicForm({
             </FormCard>
         </div>
     );
-
-
-
-
 }
 
 export default DynamicForm;

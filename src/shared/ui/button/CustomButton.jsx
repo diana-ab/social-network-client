@@ -1,18 +1,6 @@
-
-
 import "./CustomButton.css";
 
-function CustomButton({
-                          text,
-                          children,
-                          type = "button",
-                          onClick,
-                          disabled = false,
-                          variant = "primary",
-                          size = "medium",
-                          fullWidth = true,
-                          className = "",
-                      }) {
+function CustomButton({text, children, type = "button", onClick, disabled = false, variant = "primary", size = "medium", fullWidth = true, className = "",}) {
     const buttonClassName = [
         "custom-button",
         `custom-button--${variant}`,

@@ -26,9 +26,6 @@ function LoginVerifyPage() {
         }
     }, [tempToken, navigate]);
 
-
-
-
     const fields = [
         {
             name: "code",
@@ -38,7 +35,6 @@ function LoginVerifyPage() {
             required: true,
         },
     ];
-
 
     const handleVerify = async (event) => {
         event.preventDefault();
@@ -59,10 +55,6 @@ function LoginVerifyPage() {
             setApiErrorMessage(error);
         }
     };
-
-
-
-
 
     return (
         <DynamicForm

@@ -1,5 +1,3 @@
-
-
 .create-post-box {
     background: var(--roman-parchment);
     border: 1px solid var(--roman-border);
@@ -12,7 +10,6 @@
     width: 100%;
     min-height: 110px;
 
-    /* Important for fixed layout: do not allow user resizing to push other areas around */
     resize: none;
 
     border: 1px solid rgba(156, 106, 36, 0.45);

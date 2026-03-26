@@ -3,17 +3,18 @@ import RightSidebar from "./RightSidebar.jsx";
 import LeftSidebar from "./LeftSidebar.jsx";
 import FeedMain from "./FeedMain.jsx";
 import useFeedUsers from "../../hooks/useFeedUsers.js";
-
+import useFeedManager from "../../hooks/useFeedManager.js";
 
 function FeedBody() {
-    const {searchTerm, setSearchTerm, users, isSearching, pendingUserId,
-        error, handleFollowUser, handleUnfollowUser,} = useFeedUsers();
+    const {postsRefreshKey, followingRefreshKey, refreshFeedRelations,} = useFeedManager();
+    const {searchTerm, setSearchTerm, users, isSearching, pendingUserId, errorMessage, handleFollowUser, handleUnfollowUser,} = useFeedUsers(refreshFeedRelations);
 
     return (
         <div className="feed-body">
-            <LeftSidebar/>
+            <LeftSidebar refreshKey={followingRefreshKey} />
 
-            <FeedMain />
+            <FeedMain refreshKey={postsRefreshKey} />
+
             <RightSidebar
                 searchTerm={searchTerm}
                 onSearchChange={(e) => setSearchTerm(e.target.value)}
@@ -22,7 +23,7 @@ function FeedBody() {
                 onUnfollowUser={handleUnfollowUser}
                 isSearching={isSearching}
                 pendingUserId={pendingUserId}
-                error={error}
+                error={errorMessage}
             />
         </div>
     );

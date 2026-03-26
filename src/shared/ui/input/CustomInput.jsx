@@ -1,4 +1,3 @@
-
 import "./CustomInput.css";
 
 function CustomInput({
