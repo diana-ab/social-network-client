@@ -1,54 +1,83 @@
 :root {
-    --color-bg-main: #f3ede2;
-    --color-bg-panel: #f8f1e5;
-    --color-bg-accent: #8b2e2e;
-    --color-bg-accent-dark: #6f2222;
-    --color-border: #c9a96b;
-    --color-border-soft: #d8c39a;
-    --color-text-main: #4a3426;
-    --color-text-soft: #7a5a43;
-    --color-gold: #c9a44c;
-    --color-shadow: rgba(74, 52, 38, 0.15);
+    /* Roman palette */
+    --roman-bg-top: #f3ead9;
+    --roman-bg-bottom: #e4d6bf;
+    --roman-text: #2c2015;
+    --roman-muted: #6a5842;
 
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
+    --roman-panel: rgba(255, 255, 255, 0.62);
+    --roman-parchment: rgba(253, 247, 236, 0.88);
 
-    --spacing-xs: 6px;
-    --spacing-sm: 10px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
+    --roman-gold-hi: #f6e3a2;
+    --roman-gold: #d4a442;
+    --roman-gold-lo: #9c6a24;
 
-    --font-main: "Georgia", "Times New Roman", serif;
+    --roman-red: #8b1f2c;
+    --roman-red-lo: #5c121b;
+
+    --roman-border: rgba(156, 106, 36, 0.55);
+    --roman-border-strong: rgba(156, 106, 36, 0.8);
+
+    /* Layout tokens */
+    --app-header-height: 92px;
+    --app-shell-max-width: 1240px;
+    --app-gutter: 24px;
+
+    /* Shape & motion */
+    --r-lg: 18px;
+    --r-md: 14px;
+    --r-sm: 10px;
+
+    --shadow-soft: 0 10px 22px rgba(45, 28, 12, 0.16);
+    --shadow-hard: 0 16px 36px rgba(45, 28, 12, 0.22);
+
+    --t-fast: 160ms ease;
 }
 
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body, #root {
-    min-height: 100%;
 }
 
 body {
-    font-family: var(--font-main);
-    background: linear-gradient(to bottom, #efe6d6, #e7dcc9);
-    color: var(--color-text-main);
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--roman-text);
+
+    /* Marble-ish ambient background without images */
+    background:
+            radial-gradient(1200px 700px at 18% 0%, rgba(255, 255, 255, 0.7), transparent 60%),
+            radial-gradient(1000px 600px at 85% 10%, rgba(255, 255, 255, 0.55), transparent 62%),
+            linear-gradient(to bottom, var(--roman-bg-top), var(--roman-bg-bottom));
 }
 
-button, input, textarea {
-    font: inherit;
-}
-
+/* Links */
 a {
-    color: inherit;
-    text-decoration: none;
+    color: var(--roman-red);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
-img {
-    display: block;
-    max-width: 100%;
+a:hover {
+    filter: brightness(0.95);
+}
+
+/* Scrollbars */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(139, 31, 44, 0.65) rgba(255, 255, 255, 0.28);
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(to bottom, rgba(246, 227, 162, 0.95), rgba(156, 106, 36, 0.85));
 }

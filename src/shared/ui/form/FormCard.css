@@ -1,19 +1,44 @@
 .form-card {
-    width: 420px;
-    max-width: 90%;
+    width: min(520px, 92vw);
+    border-radius: var(--r-lg);
 
-    background: white;
-    border-radius: 16px;
+    padding: 26px 26px 22px;
 
-    padding: 40px;
-
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    background: var(--roman-panel);
+    border: 1px solid var(--roman-border);
+    box-shadow: var(--shadow-hard);
+    backdrop-filter: blur(4px);
 }
 
 .form-title {
-    margin: 0 0 10px 0;
-    font-size: 30px;
-    font-weight: 700;
+    margin: 0 0 18px 0;
+
+    padding: 14px 14px;
+    border-radius: var(--r-lg);
+
+    background: linear-gradient(to bottom, var(--roman-red), var(--roman-red-lo));
+    border: 1px solid var(--roman-border-strong);
+    box-shadow: 0 12px 22px rgba(45, 28, 12, 0.22);
+
+    color: #f7e7c8;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     text-align: center;
-    color: #111827;
+
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+
+
+.form-message {
+    margin: 0;
+    padding: 10px 12px;
+    border-radius: var(--r-md);
+
+    background: rgba(139, 31, 44, 0.12);
+    border: 1px solid rgba(139, 31, 44, 0.22);
+    color: var(--roman-red-lo);
+    font-weight: 800;
 }

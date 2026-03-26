@@ -7,21 +7,22 @@ function RightSidebar({searchTerm, onSearchChange, users, onFollowUser, onUnfoll
 
     const hasSearchTerm = searchTerm.trim().length > 0;
 
+
+
     return (
         <aside className="right-sidebar">
-            <div className="right-sidebar__search">
-                <UserSearch
-                    value={searchTerm}
-                    onChange={onSearchChange}
-                />
+            <div className="right-sidebar__top">
+                <div className="right-sidebar__title">Find Citizens</div>
+                <div className="right-sidebar__search">
+                    <UserSearch value={searchTerm} onChange={onSearchChange} />
+                </div>
             </div>
+            <div className="right-sidebar__results" role="region" aria-label="User search results">
+                {!hasSearchTerm && <p className="right-sidebar__hint">Start typing to search users</p>}
+                {hasSearchTerm && isSearching && <p className="right-sidebar__hint">Loading...</p>}
+                {hasSearchTerm && error && <p className="right-sidebar__error">{error}</p>}
 
-            <div className="right-sidebar__results">
-                {!hasSearchTerm && <p>Start typing to search users</p>}
-                {hasSearchTerm && isSearching && <p>Loading...</p>}
-                {hasSearchTerm && error && <p>{error}</p>}
                 {hasSearchTerm && !isSearching && !error && (
-
                     <SearchResultsList
                         users={users}
                         onFollowUser={onFollowUser}

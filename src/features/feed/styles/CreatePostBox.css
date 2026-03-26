@@ -1,36 +1,45 @@
+
+
 .create-post-box {
-    background: white;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    background: var(--roman-parchment);
+    border: 1px solid var(--roman-border);
+    border-radius: var(--r-lg);
     padding: 16px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--shadow-soft);
 }
 
 .create-post-box__textarea {
     width: 100%;
-    min-height: 120px;
-    resize: vertical;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    padding: 12px;
+    min-height: 110px;
+
+    /* Important for fixed layout: do not allow user resizing to push other areas around */
+    resize: none;
+
+    border: 1px solid rgba(156, 106, 36, 0.45);
+    border-radius: var(--r-md);
+
+    padding: 12px 12px;
     font: inherit;
-    box-sizing: border-box;
+    line-height: 1.5;
+
+    color: var(--roman-text);
+    background: rgba(255, 255, 255, 0.55);
+
     outline: none;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
+    transition: box-shadow var(--t-fast), border-color var(--t-fast);
 }
 
 .create-post-box__textarea:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: rgba(212, 164, 66, 0.9);
+    box-shadow: 0 0 0 3px rgba(212, 164, 66, 0.22);
 }
 
 .create-post-box__textarea::placeholder {
-    color: #9ca3af;
+    color: rgba(44, 32, 21, 0.55);
 }
 
 .create-post-box__textarea:disabled {
-    background-color: #f1f5f9;
+    opacity: 0.7;
     cursor: not-allowed;
 }
 

@@ -1,9 +1,9 @@
 function FormMessage({ message }) {
     if (!message) {
         return null;
-    }// אולי
+    }
+    return <p className="form-message">{message}</p>;
 
-    return <p>{message}</p>;
 }
 
 export default FormMessage;

@@ -1,0 +1,14 @@
+.feed-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+
+    overflow: hidden;
+}
+
+
+.feed-page > .feed-body {
+    flex: 1;
+    min-height: 0;
+}

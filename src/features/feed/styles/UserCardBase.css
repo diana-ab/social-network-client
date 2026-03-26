@@ -1,26 +1,32 @@
+
+
 .user-card-base {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+
     padding: 10px 12px;
-    border-radius: 10px;
-    background-color: white;
-    border: 1px solid #e5e7eb;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    border-radius: var(--r-md);
+
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(156, 106, 36, 0.35);
+    box-shadow: 0 8px 16px rgba(45, 28, 12, 0.12);
+
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.15s ease;
+    transition: transform var(--t-fast), filter var(--t-fast);
 }
 
 .user-card-base:hover {
-    background-color: #f9fafb;
     transform: translateY(-1px);
+    filter: brightness(0.98);
 }
 
 .user-card-base__left {
     display: flex;
     align-items: center;
     gap: 10px;
+
     min-width: 0;
 }
 
@@ -34,22 +40,26 @@
 
 .user-card-base__image {
     object-fit: cover;
+    border: 1px solid rgba(156, 106, 36, 0.35);
 }
 
 .user-card-base__avatar-fallback {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #2563eb;
-    color: white;
-    font-weight: 700;
+
+    background: linear-gradient(to bottom, var(--roman-red), var(--roman-red-lo));
+    color: #f7e7c8;
+    font-weight: 900;
     font-size: 16px;
+    border: 1px solid var(--roman-border-strong);
 }
 
 .user-card-base__username {
-    font-size: 14px;
-    font-weight: 600;
-    color: #111827;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--roman-text);
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

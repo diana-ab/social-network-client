@@ -1,19 +1,36 @@
+
+
 .feed-body {
-    width: 100%;
+    width: min(calc(100% - (2 * var(--app-gutter))), var(--app-shell-max-width));
+    margin: 0 auto;
+    padding: var(--app-gutter) 0;
+
     display: grid;
-    grid-template-columns: 1fr 1fr 340px;
-    gap: 32px;
-    align-items: start;
-    margin-top: 32px;
+    grid-template-columns: 320px minmax(0, 1fr) 340px;
+    gap: var(--app-gutter);
+
+    /* Make columns fill the available height */
+    align-items: stretch;
+
+    /* Critical for nested scroll containers */
+    min-height: 0;
 }
 
-.left-sidebar,
-.feed-main,
-.right-sidebar {
-    width: 100%;
+/* Allow content to shrink in grid columns */
+.feed-body > * {
+    min-width: 0;
+    min-height: 0;
 }
 
-.left-sidebar__box,
-.feed-main__box {
-    min-height: 120px;
+/* Optional: mild responsiveness without breaking the shell */
+@media (max-width: 1100px) {
+    .feed-body {
+        grid-template-columns: 300px minmax(0, 1fr) 320px;
+    }
+}
+
+@media (max-width: 900px) {
+    .feed-body {
+        grid-template-columns: 1fr;
+    }
 }

@@ -1,12 +1,16 @@
+
+
 .user-list {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 8px 0;
+    gap: 8px;
+    padding: 6px 0;
+    min-width: 0;
 }
 
 .user-list__empty {
     font-size: 14px;
-    color: #6b7280;
+    color: var(--roman-muted);
     padding: 8px;
+    font-style: italic;
 }
