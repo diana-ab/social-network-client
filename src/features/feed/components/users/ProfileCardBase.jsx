@@ -30,7 +30,7 @@ function ProfileCardBase({ user, onClick, className = "" }) {
 
             <div className="profile-card-base__content">
                 <h3 className="profile-card-base__username">{username}</h3>
-                <p className="profile-card-base__subtitle">Citizen of Romanet</p>
+                <p className="profile-card-base__subtitle">Citizen of The Empire</p>
             </div>
         </div>
     );
