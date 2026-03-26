@@ -1,26 +1,55 @@
+import { useState } from "react";
 import ProfileCard from "../users/ProfileCard.jsx";
 import FollowingList from "../users/FollowingList.jsx";
-import useLeftSidebarData from "../../hooks/useLeftSidebarData.js";
+import { updateProfileImage } from "../../services/feedService.js";
 import "../../styles/LeftSidebar.css";
 
-function LeftSidebar({ refreshKey }) {
-    const {currentUser, followingUsers, isLoadingLeftSidebar, leftSidebarError, isUpdatingProfileImage, updateProfileImageError, handleUpdateProfileImage, clearUpdateProfileImageError,} = useLeftSidebarData(refreshKey);
+function LeftSidebar({ currentUser, followingUsers, setCurrentUser }) {
+    const [isUpdatingProfileImage, setIsUpdatingProfileImage] = useState(false);
+    const [updateProfileImageError, setUpdateProfileImageError] = useState("");
 
-    if (isLoadingLeftSidebar) {
-        return (
-            <aside className="left-sidebar">
-                <p className="left-sidebar__hint">Loading left sidebar...</p>
-            </aside>
-        );
-    }
+    const handleUpdateProfileImage = async (profileImageUrl) => {
+        const trimmedProfileImageUrl = profileImageUrl.trim();
 
-    if (leftSidebarError) {
-        return (
-            <aside className="left-sidebar">
-                <p className="left-sidebar__error">{leftSidebarError}</p>
-            </aside>
-        );
-    }
+        if (!trimmedProfileImageUrl) {
+            setUpdateProfileImageError("Profile image URL cannot be empty");
+            return false;
+        }
+
+        setIsUpdatingProfileImage(true);
+        setUpdateProfileImageError("");
+
+        try {
+            const response = await updateProfileImage(trimmedProfileImageUrl);
+
+            if (!response.success) {
+                setUpdateProfileImageError("Failed to update profile image");
+                return false;
+            }
+
+            setCurrentUser((previousUser) => {
+                if (!previousUser) {
+                    return previousUser;
+                }
+
+                return {
+                    ...previousUser,
+                    profilePicture: trimmedProfileImageUrl,
+                };
+            });
+
+            return true;
+        } catch (error) {
+            setUpdateProfileImageError("Failed to update profile image");
+            return false;
+        } finally {
+            setIsUpdatingProfileImage(false);
+        }
+    };
+
+    const clearUpdateProfileImageError = () => {
+        setUpdateProfileImageError("");
+    };
 
     return (
         <aside className="left-sidebar">

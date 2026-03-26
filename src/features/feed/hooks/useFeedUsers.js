@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { followUser, searchUsers, unfollowUser } from "../services/feedService.js";
 import useErrorMessage from "../../../shared/hooks/useErrorMessage.js";
 
-function useFeedUsers(onFollowChanged) {
+function useFeedUsers({ onFollowSuccess, onUnfollowSuccess } = {}) {
     const [searchTerm, setSearchTerm] = useState("");
     const [users, setUsers] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
@@ -46,16 +46,19 @@ function useFeedUsers(onFollowChanged) {
 
             await followUser(selectedUser.id);
 
+            const updatedUser = {
+                ...selectedUser,
+                following: true,
+            };
+
             setUsers((prevUsers) =>
                 prevUsers.map((user) =>
-                    user.id === selectedUser.id
-                        ? { ...user, following: true }
-                        : user
+                    user.id === selectedUser.id ? updatedUser : user
                 )
             );
 
-            if (onFollowChanged) {
-                onFollowChanged();
+            if (onFollowSuccess) {
+                await onFollowSuccess(updatedUser);
             }
         } catch (error) {
             setErrorMessageFromApiError(error);
@@ -71,16 +74,19 @@ function useFeedUsers(onFollowChanged) {
 
             await unfollowUser(selectedUser.id);
 
+            const updatedUser = {
+                ...selectedUser,
+                following: false,
+            };
+
             setUsers((prevUsers) =>
                 prevUsers.map((user) =>
-                    user.id === selectedUser.id
-                        ? { ...user, following: false }
-                        : user
+                    user.id === selectedUser.id ? updatedUser : user
                 )
             );
 
-            if (onFollowChanged) {
-                onFollowChanged();
+            if (onUnfollowSuccess) {
+                onUnfollowSuccess(updatedUser);
             }
         } catch (error) {
             setErrorMessageFromApiError(error);

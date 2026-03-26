@@ -16,7 +16,7 @@ export async function followUser(userId) {
 
 export async function unfollowUser(userId) {
     const response = await api.delete("/dashboard/follow", {
-        data: { followedUserId: userId }
+        data: {followedUserId: userId}
     });
     return response.data;
 }
@@ -32,12 +32,17 @@ export async function getFeedPosts() {
 }
 
 export async function createPost(content) {
-    const response = await api.post("/dashboard/posts", { content });
+    const response = await api.post("/dashboard/posts", {content});
     return response.data;
 }
 
 export async function getMyProfile() {
     const response = await api.get("/dashboard/me");
+    return response.data;
+}
+
+export async function getPostsByUserId(userId) {
+    const response = await api.get(`/dashboard/users/${userId}/posts`);
     return response.data;
 }
 
