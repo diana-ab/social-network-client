@@ -1,74 +1,24 @@
-import { useEffect, useState } from "react";
 import "../../styles/FeedBody.css";
 import RightSidebar from "./RightSidebar.jsx";
 import LeftSidebar from "./LeftSidebar.jsx";
 import FeedMain from "./FeedMain.jsx";
 import useFeedUsers from "../../hooks/useFeedUsers.js";
-import {
-    getFeedPosts,
-    getFollowing,
-    getMyProfile,
-    getPostsByUserId,
-} from "../../services/feedService.js";
+import useFeedPageData from "../../hooks/useFeedPageData.js";
+import { getPostsByUserId } from "../../services/feedService.js";
+import { mergePostsWithoutDuplicates } from "../../utils/postUtils.js";
+import { FEED_PAGE_MESSAGES } from "../../constants/feedMessages.js";
 
 function FeedBody() {
-    const [currentUser, setCurrentUser] = useState(null);
-    const [followingUsers, setFollowingUsers] = useState([]);
-    const [posts, setPosts] = useState([]);
-    const [isLoadingPage, setIsLoadingPage] = useState(false);
-    const [pageError, setPageError] = useState("");
-
-    useEffect(() => {
-        loadInitialData();
-    }, []);
-
-    const loadInitialData = async () => {
-        setIsLoadingPage(true);
-        setPageError("");
-
-        try {
-            const [profileResponse, followingResponse, feedResponse] = await Promise.all([
-                getMyProfile(),
-                getFollowing(),
-                getFeedPosts(),
-            ]);
-
-            if (!profileResponse.success) {
-                setPageError("Failed to load profile");
-                return;
-            }
-
-            if (!followingResponse.success) {
-                setPageError("Failed to load following users");
-                return;
-            }
-
-            if (!feedResponse.success) {
-                setPageError("Failed to load posts");
-                return;
-            }
-
-            setCurrentUser(profileResponse || null);
-            setFollowingUsers(followingResponse.followingUsers || []);
-            setPosts(feedResponse.posts || []);
-        } catch (error) {
-            setPageError("Failed to load feed page");
-        } finally {
-            setIsLoadingPage(false);
-        }
-    };
-
-    const mergePostsWithoutDuplicates = (oldPosts, newPosts) => {
-        const merged = [...newPosts, ...oldPosts];
-
-        const uniquePosts = merged.filter((post, index, array) => {
-            return index === array.findIndex((currentPost) => currentPost.id === post.id);
-        });
-
-        return uniquePosts
-            .sort((firstPost, secondPost) => new Date(secondPost.createdAt) - new Date(firstPost.createdAt))
-            .slice(0, 20);
-    };
+    const {
+        currentUser,
+        setCurrentUser,
+        followingUsers,
+        setFollowingUsers,
+        posts,
+        setPosts,
+        isLoadingPage,
+        pageError,
+    } = useFeedPageData();
 
     const {
         searchTerm,
@@ -88,7 +38,6 @@ function FeedBody() {
                 }
                 return [selectedUser, ...previousUsers];
             });
-
             try {
                 const response = await getPostsByUserId(selectedUser.id);
                 const newPosts = response.posts || [];
@@ -97,7 +46,7 @@ function FeedBody() {
                     mergePostsWithoutDuplicates(previousPosts, newPosts)
                 );
             } catch (error) {
-                console.error("Failed to load followed user posts", error);
+                console.error(FEED_PAGE_MESSAGES.LOAD_FOLLOWED_USER_POSTS_ERROR, error);
             }
         },
 
@@ -113,7 +62,7 @@ function FeedBody() {
     });
 
     if (isLoadingPage) {
-        return <div className="feed-body">Loading feed...</div>;
+        return <div className="feed-body">{FEED_PAGE_MESSAGES.LOADING_FEED}</div>;
     }
 
     if (pageError) {
@@ -136,7 +85,7 @@ function FeedBody() {
 
             <RightSidebar
                 searchTerm={searchTerm}
-                onSearchChange={(e) => setSearchTerm(e.target.value)}
+                onSearchChange={(event) => setSearchTerm(event.target.value)}
                 users={users}
                 onFollowUser={handleFollowUser}
                 onUnfollowUser={handleUnfollowUser}
