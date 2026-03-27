@@ -7,7 +7,7 @@ function useLogout() {
     const handleLogout = async () => {
         try {
             await logoutUser();
-            navigate("/login", { replace: true });
+            navigate("/login", {replace: true});
         } catch (error) {
             console.error("Logout failed", error);
         }
@@ -17,4 +17,5 @@ function useLogout() {
         handleLogout,
     };
 }
+
 export default useLogout;

@@ -1,8 +1,7 @@
-
 import "../../styles/UserCardBase.css";
-import { DEFAULT_USERNAME_FALLBACK } from "../../utils/feedConstant.js";
+import {DEFAULT_USERNAME_FALLBACK} from "../../utils/feedConstant.js";
 
-function UserCardBase({ user, rightContent, onClick, className = "" }) {
+function UserCardBase({user, rightContent, onClick, className = ""}) {
     if (!user) {
         return null;
     }

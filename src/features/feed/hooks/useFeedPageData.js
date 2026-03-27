@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import {
     getFeedPosts,
     getFollowing,
     getMyProfile,
 } from "../services/feedService.js";
-import { FEED_PAGE_MESSAGES } from "../constants/feedMessages.js";
+import {FEED_PAGE_MESSAGES} from "../constants/feedMessages.js";
 
 function useFeedPageData() {
     const [currentUser, setCurrentUser] = useState(null);

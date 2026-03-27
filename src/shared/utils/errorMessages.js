@@ -1,4 +1,4 @@
-import { ERROR_CODES } from "../constants/errorCodes.js";
+import {ERROR_CODES} from "../constants/errorCodes.js";
 
 export const ERROR_MESSAGES = {
     [ERROR_CODES.INVALID_REQUEST]: "Invalid request.",

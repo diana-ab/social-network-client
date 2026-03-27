@@ -1,6 +1,6 @@
 import "../../styles/UserList.css";
 
-function UserList({ users = [], renderItem, emptyMessage = "No users found" }) {
+function UserList({users = [], renderItem, emptyMessage = "No users found"}) {
     if (!users.length) {
         return (
             <div className="user-list__empty">

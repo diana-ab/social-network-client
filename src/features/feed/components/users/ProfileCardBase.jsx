@@ -1,6 +1,6 @@
 import "../../styles/ProfileCard.css";
 
-function ProfileCardBase({ user, onClick, className = "" }) {
+function ProfileCardBase({user, onClick, className = ""}) {
     if (!user) {
         return null;
     }

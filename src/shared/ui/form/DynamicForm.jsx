@@ -1,4 +1,3 @@
-
 import CustomInput from "../input/CustomInput.jsx";
 import CustomButton from "../button/CustomButton.jsx";
 import FormCard from "./FormCard.jsx";
@@ -54,7 +53,7 @@ function DynamicForm({
                         {buttonText}
                     </CustomButton>
 
-                    <FormMessage message={message} />
+                    <FormMessage message={message}/>
 
                     {extraContent}
                     {footer}

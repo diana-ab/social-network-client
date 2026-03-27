@@ -1,5 +1,6 @@
 import "../../styles/CreatePostBox.css"
 import CustomButton from "../../../../shared/ui/button/CustomButton.jsx";
+
 function CreatePostBox({value, onChange, onSubmit, isLoading = false,}) {
     return (
         <div className="create-post-box">

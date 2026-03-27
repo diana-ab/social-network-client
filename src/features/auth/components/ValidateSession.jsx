@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import {useEffect, useState} from "react";
+import {Navigate} from "react-router-dom";
 import api from "../../../api/axiosClient.js";
 
-function ValidateSession({ children }) {
+function ValidateSession({children}) {
 
     const [status, setStatus] = useState("loading");
 
@@ -36,7 +36,7 @@ function ValidateSession({ children }) {
     }
 
     if (status === "unauthenticated") {
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/login" replace/>;
     }
 
     return children;

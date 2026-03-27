@@ -3,7 +3,7 @@ import CustomButton from "../../../../shared/ui/button/CustomButton.jsx";
 import "../../styles/FeedHeader.css";
 
 function FeedHeader() {
-    const { handleLogout } = useLogout();
+    const {handleLogout} = useLogout();
 
     return (
         <header className="feed-header">

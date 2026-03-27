@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { followUser, searchUsers, unfollowUser } from "../services/feedService.js";
+import {useEffect, useState} from "react";
+import {followUser, searchUsers, unfollowUser} from "../services/feedService.js";
 import useErrorMessage from "../../../shared/hooks/useErrorMessage.js";
 
-function useFeedUsers({ onFollowSuccess, onUnfollowSuccess } = {}) {
+function useFeedUsers({onFollowSuccess, onUnfollowSuccess} = {}) {
     const [searchTerm, setSearchTerm] = useState("");
     const [users, setUsers] = useState([]);
     const [isSearching, setIsSearching] = useState(false);

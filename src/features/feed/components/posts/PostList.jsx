@@ -1,9 +1,7 @@
-
 import "../../styles/PostList.css";
 import PostCard from "./PostCard.jsx";
 
-function PostList({ posts = [] }) {
-
+function PostList({posts = [], currentUser, onDeletePost}) {
     if (!posts.length) {
         return (
             <div className="post-list__empty">
@@ -11,6 +9,7 @@ function PostList({ posts = [] }) {
             </div>
         );
     }
+
     const sortedPosts = [...posts].sort((firstPost, secondPost) => {
         const firstCreatedAt = new Date(firstPost.createdAt);
         const secondCreatedAt = new Date(secondPost.createdAt);
@@ -23,6 +22,8 @@ function PostList({ posts = [] }) {
                 <PostCard
                     key={post.id}
                     post={post}
+                    currentUser={currentUser}
+                    onDeletePost={onDeletePost}
                 />
             ))}
         </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {useState} from "react";
 import useErrorMessage from "../../../shared/hooks/useErrorMessage.js";
 
 function useAuthForm(initialFormData) {

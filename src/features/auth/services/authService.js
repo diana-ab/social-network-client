@@ -36,7 +36,7 @@ export const refreshUser = async () => {
 };
 
 export const sendLoginCode = async (data) => {
-    const response= await api.post("/send-login-code",data)
+    const response = await api.post("/send-login-code", data)
     return response.data;
 }
 

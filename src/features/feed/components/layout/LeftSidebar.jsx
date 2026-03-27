@@ -3,13 +3,13 @@ import FollowingList from "../users/FollowingList.jsx";
 import useProfileImageUpdater from "../../hooks/useProfileImageUpdater.js";
 import "../../styles/LeftSidebar.css";
 
-function LeftSidebar({ currentUser, followingUsers, setCurrentUser }) {
+function LeftSidebar({currentUser, followingUsers, setCurrentUser}) {
     const {
         isUpdatingProfileImage,
         updateProfileImageError,
         handleUpdateProfileImage,
         clearUpdateProfileImageError,
-    } = useProfileImageUpdater({ setCurrentUser });
+    } = useProfileImageUpdater({setCurrentUser});
 
     return (
         <aside className="left-sidebar">
@@ -30,7 +30,7 @@ function LeftSidebar({ currentUser, followingUsers, setCurrentUser }) {
                 role="region"
                 aria-label="Following list"
             >
-                <FollowingList users={followingUsers} />
+                <FollowingList users={followingUsers}/>
             </div>
         </aside>
     );

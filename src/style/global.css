@@ -57,11 +57,10 @@ body {
     font-family: Georgia, "Times New Roman", serif;
     color: var(--roman-text);
 
-    background:
-            radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.82), transparent 0 20%),
-            radial-gradient(circle at 86% 12%, rgba(255, 250, 236, 0.42), transparent 0 18%),
-            radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.16), transparent 0 30%),
-            linear-gradient(180deg, #f6efe3 0%, #eee1cd 52%, #e1d0b5 100%);
+    background: radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.82), transparent 0 20%),
+    radial-gradient(circle at 86% 12%, rgba(255, 250, 236, 0.42), transparent 0 18%),
+    radial-gradient(circle at 50% 38%, rgba(255, 255, 255, 0.16), transparent 0 30%),
+    linear-gradient(180deg, #f6efe3 0%, #eee1cd 52%, #e1d0b5 100%);
 }
 
 #root {
@@ -77,41 +76,40 @@ body::before {
     pointer-events: none;
     z-index: 0;
     opacity: 0.72;
-    background:
-            linear-gradient(
-                    116deg,
-                    transparent 0%,
-                    rgba(88, 82, 74, 0.11) 8%,
-                    transparent 11%,
-                    rgba(122, 114, 102, 0.08) 16%,
-                    transparent 20%,
-                    rgba(86, 79, 70, 0.12) 26%,
-                    transparent 30%,
-                    rgba(138, 128, 114, 0.08) 36%,
-                    transparent 41%,
-                    rgba(92, 85, 76, 0.11) 47%,
-                    transparent 52%,
-                    rgba(126, 116, 102, 0.08) 58%,
-                    transparent 63%,
-                    rgba(88, 82, 72, 0.11) 70%,
-                    transparent 75%,
-                    rgba(118, 108, 96, 0.08) 82%,
-                    transparent 100%
-            ),
-            linear-gradient(
-                    66deg,
-                    transparent 0%,
-                    rgba(126, 118, 106, 0.07) 14%,
-                    transparent 18%,
-                    rgba(96, 88, 78, 0.1) 27%,
-                    transparent 33%,
-                    rgba(142, 132, 120, 0.06) 44%,
-                    transparent 49%,
-                    rgba(92, 86, 78, 0.08) 60%,
-                    transparent 67%,
-                    rgba(130, 120, 108, 0.06) 78%,
-                    transparent 100%
-            );
+    background: linear-gradient(
+            116deg,
+            transparent 0%,
+            rgba(88, 82, 74, 0.11) 8%,
+            transparent 11%,
+            rgba(122, 114, 102, 0.08) 16%,
+            transparent 20%,
+            rgba(86, 79, 70, 0.12) 26%,
+            transparent 30%,
+            rgba(138, 128, 114, 0.08) 36%,
+            transparent 41%,
+            rgba(92, 85, 76, 0.11) 47%,
+            transparent 52%,
+            rgba(126, 116, 102, 0.08) 58%,
+            transparent 63%,
+            rgba(88, 82, 72, 0.11) 70%,
+            transparent 75%,
+            rgba(118, 108, 96, 0.08) 82%,
+            transparent 100%
+    ),
+    linear-gradient(
+            66deg,
+            transparent 0%,
+            rgba(126, 118, 106, 0.07) 14%,
+            transparent 18%,
+            rgba(96, 88, 78, 0.1) 27%,
+            transparent 33%,
+            rgba(142, 132, 120, 0.06) 44%,
+            transparent 49%,
+            rgba(92, 86, 78, 0.08) 60%,
+            transparent 67%,
+            rgba(130, 120, 108, 0.06) 78%,
+            transparent 100%
+    );
     filter: blur(0.2px);
     transform: scale(1.04);
 }
@@ -123,17 +121,16 @@ body::after {
     pointer-events: none;
     z-index: 0;
     opacity: 0.42;
-    background:
-            radial-gradient(circle at 12% 16%, rgba(115, 106, 94, 0.09) 0 5%, transparent 6%),
-            radial-gradient(circle at 24% 30%, rgba(138, 128, 114, 0.08) 0 6%, transparent 7%),
-            radial-gradient(circle at 36% 20%, rgba(97, 89, 79, 0.08) 0 4%, transparent 5%),
-            radial-gradient(circle at 47% 43%, rgba(124, 114, 101, 0.08) 0 7%, transparent 8%),
-            radial-gradient(circle at 62% 26%, rgba(146, 136, 122, 0.07) 0 6%, transparent 7%),
-            radial-gradient(circle at 74% 52%, rgba(97, 89, 77, 0.08) 0 5%, transparent 6%),
-            radial-gradient(circle at 82% 24%, rgba(128, 118, 106, 0.08) 0 6%, transparent 7%),
-            radial-gradient(circle at 28% 72%, rgba(110, 100, 88, 0.07) 0 6%, transparent 7%),
-            radial-gradient(circle at 58% 76%, rgba(142, 132, 118, 0.07) 0 7%, transparent 8%),
-            radial-gradient(circle at 84% 80%, rgba(106, 96, 84, 0.08) 0 6%, transparent 7%);
+    background: radial-gradient(circle at 12% 16%, rgba(115, 106, 94, 0.09) 0 5%, transparent 6%),
+    radial-gradient(circle at 24% 30%, rgba(138, 128, 114, 0.08) 0 6%, transparent 7%),
+    radial-gradient(circle at 36% 20%, rgba(97, 89, 79, 0.08) 0 4%, transparent 5%),
+    radial-gradient(circle at 47% 43%, rgba(124, 114, 101, 0.08) 0 7%, transparent 8%),
+    radial-gradient(circle at 62% 26%, rgba(146, 136, 122, 0.07) 0 6%, transparent 7%),
+    radial-gradient(circle at 74% 52%, rgba(97, 89, 77, 0.08) 0 5%, transparent 6%),
+    radial-gradient(circle at 82% 24%, rgba(128, 118, 106, 0.08) 0 6%, transparent 7%),
+    radial-gradient(circle at 28% 72%, rgba(110, 100, 88, 0.07) 0 6%, transparent 7%),
+    radial-gradient(circle at 58% 76%, rgba(142, 132, 118, 0.07) 0 7%, transparent 8%),
+    radial-gradient(circle at 84% 80%, rgba(106, 96, 84, 0.08) 0 6%, transparent 7%);
     filter: blur(4px);
 }
 

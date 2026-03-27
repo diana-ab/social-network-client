@@ -5,6 +5,8 @@ export const FEED_PAGE_MESSAGES = {
     LOAD_POSTS_ERROR: "Failed to load posts.",
     LOAD_PAGE_ERROR: "Failed to load feed page.",
     LOAD_FOLLOWED_USER_POSTS_ERROR: "Failed to load followed user posts.",
+    DELETE_POST_ERROR: "Failed to delete post.",
+    LOADING_SWITCHED_POSTS: "Loading posts...",
 };
 
 export const FEED_POST_MESSAGES = {

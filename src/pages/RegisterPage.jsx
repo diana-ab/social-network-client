@@ -1,6 +1,5 @@
-
-import { useNavigate, Link } from "react-router-dom";
-import { checkMailForRegister } from "../features/auth/services/authService.js";
+import {useNavigate, Link} from "react-router-dom";
+import {checkMailForRegister} from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 

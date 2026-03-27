@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { updateProfileImage } from "../services/feedService.js";
-import { FEED_PROFILE_MESSAGES } from "../constants/feedMessages.js";
+import {useState} from "react";
+import {updateProfileImage} from "../services/feedService.js";
+import {FEED_PROFILE_MESSAGES} from "../constants/feedMessages.js";
 
-function useProfileImageUpdater({ setCurrentUser }) {
+function useProfileImageUpdater({setCurrentUser}) {
     const [isUpdatingProfileImage, setIsUpdatingProfileImage] = useState(false);
     const [updateProfileImageError, setUpdateProfileImageError] = useState("");
 

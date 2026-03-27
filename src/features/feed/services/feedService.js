@@ -52,3 +52,13 @@ export async function updateProfileImage(profileImageUrl) {
     });
     return response.data;
 }
+
+export async function getMyPosts() {
+    const response = await api.get("/dashboard/me/posts");
+    return response.data;
+}
+
+export async function deletePost(postId) {
+    const response = await api.delete(`/dashboard/posts/${postId}`);
+    return response.data;
+}

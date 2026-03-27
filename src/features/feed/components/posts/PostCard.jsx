@@ -1,8 +1,9 @@
-import { DEFAULT_USERNAME_FALLBACK } from "../../utils/feedConstant.js";
-import "../../styles/PostCard.css"
+import {DEFAULT_USERNAME_FALLBACK} from "../../utils/feedConstant.js";
+import "../../styles/PostCard.css";
 import {formatPostTime} from "../../utils/formatPostTime.js";
+import CustomButton from "../../../../shared/ui/button/CustomButton.jsx";
 
-function PostCard({ post }) {
+function PostCard({post, currentUser, onDeletePost}) {
     if (!post) {
         return null;
     }
@@ -10,7 +11,9 @@ function PostCard({ post }) {
     const firstLetter = post.username
         ? post.username.charAt(0).toUpperCase()
         : DEFAULT_USERNAME_FALLBACK;
+
     const createdAt = formatPostTime(post.createdAt);
+    const isOwner = currentUser?.id === post.userId;
 
     return (
         <article className="post-card">
@@ -38,6 +41,16 @@ function PostCard({ post }) {
                         </span>
                     </div>
                 </div>
+
+                {isOwner && (
+                    <CustomButton
+                        text="Delete"
+                        onClick={() => onDeletePost(post.id)}
+                        fullWidth={false}
+                        size="small"
+                        className="post-card__delete-button"
+                    />
+                )}
             </div>
 
             <div className="post-card__content">

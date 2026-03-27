@@ -70,3 +70,36 @@
     overflow-wrap: anywhere;
     word-break: break-word;
 }
+
+.post-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.post-card__delete-button {
+    min-width: 88px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    align-self: flex-start;
+}
+
+.post-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.post-card__delete-button {
+    min-width: 92px;
+    width: auto;
+    padding: 6px 14px;
+    flex-shrink: 0;
+    align-self: flex-start;
+}
+
+.post-card__delete-button.custom-button {
+    border-radius: 999px;
+}

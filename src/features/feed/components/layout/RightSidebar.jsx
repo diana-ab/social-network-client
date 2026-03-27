@@ -2,7 +2,16 @@ import UserSearch from "../users/UserSearch.jsx";
 import SearchResultsList from "../users/SearchResultsList.jsx";
 import "../../styles/RightSidebar.css";
 
-function RightSidebar({searchTerm, onSearchChange, users, onFollowUser, onUnfollowUser, isSearching, pendingUserId, error,}) {
+function RightSidebar({
+                          searchTerm,
+                          onSearchChange,
+                          users,
+                          onFollowUser,
+                          onUnfollowUser,
+                          isSearching,
+                          pendingUserId,
+                          error,
+                      }) {
     const hasSearchTerm = searchTerm.trim().length > 0;
 
     return (
@@ -10,7 +19,7 @@ function RightSidebar({searchTerm, onSearchChange, users, onFollowUser, onUnfoll
             <div className="right-sidebar__top">
                 <div className="right-sidebar__title">Find Citizens</div>
                 <div className="right-sidebar__search">
-                    <UserSearch value={searchTerm} onChange={onSearchChange} />
+                    <UserSearch value={searchTerm} onChange={onSearchChange}/>
                 </div>
             </div>
             <div className="right-sidebar__results" role="region" aria-label="User search results">

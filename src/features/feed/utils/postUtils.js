@@ -1,4 +1,4 @@
-import { FEED_LIMIT } from "../constants/feedConstants.js";
+import {FEED_LIMIT} from "../constants/feedConstants.js";
 
 export function mergePostsWithoutDuplicates(oldPosts, newPosts) {
     const merged = [...newPosts, ...oldPosts];

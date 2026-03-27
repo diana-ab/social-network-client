@@ -1,0 +1,63 @@
+.delete-post-modal__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(45, 18, 18, 0.42);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.delete-post-modal {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    background: linear-gradient(180deg, #f8f2e7 0%, #efe4d0 100%);
+    border: 1px solid #c9ab6b;
+    border-radius: 24px;
+    box-shadow: 0 18px 45px rgba(69, 31, 22, 0.28);
+    padding: 28px 24px 22px;
+}
+
+.delete-post-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(126, 20, 35, 0.12);
+    color: #7e1423;
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.delete-post-modal__title {
+    margin: 0 0 12px;
+    color: #3f2a1f;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.delete-post-modal__text {
+    margin: 0;
+    color: #6c5a49;
+    font-size: 1.08rem;
+    line-height: 1.6;
+}
+
+.delete-post-modal__actions {
+    margin-top: 28px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.delete-post-modal__back-button,
+.delete-post-modal__confirm-button {
+    min-width: 126px;
+}
