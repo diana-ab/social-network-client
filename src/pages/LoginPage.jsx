@@ -1,10 +1,12 @@
-import {useNavigate, Link} from "react-router-dom";
-import {loginUser} from "../features/auth/services/authService.js";
+
+import { useNavigate, Link } from "react-router-dom";
+import { loginUser } from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
 
 function LoginPage() {
     const navigate = useNavigate();
+
     const {
         formData,
         setFormData,
@@ -16,6 +18,7 @@ function LoginPage() {
         username: "",
         password: "",
     });
+
     const fields = [
         {
             name: "username",
@@ -42,6 +45,7 @@ function LoginPage() {
                 username: formData.username,
                 password: formData.password,
             });
+
             if (result.success) {
                 navigate("/login/verify", {
                     state: {

@@ -1,3 +1,4 @@
+
 import CustomInput from "../input/CustomInput.jsx";
 import CustomButton from "../button/CustomButton.jsx";
 import FormCard from "./FormCard.jsx";
@@ -13,9 +14,8 @@ function DynamicForm({
                          buttonText,
                          message,
                          extraContent = null,
-                         footer = null
+                         footer = null,
                      }) {
-
     const handleFieldChange = (fieldName, value) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -27,6 +27,7 @@ function DynamicForm({
         if (!field.required) {
             return false;
         }
+
         const value = formData[field.name] || "";
         return value.trim() === "";
     });
@@ -53,7 +54,7 @@ function DynamicForm({
                         {buttonText}
                     </CustomButton>
 
-                    <FormMessage message={message}/>
+                    <FormMessage message={message} />
 
                     {extraContent}
                     {footer}

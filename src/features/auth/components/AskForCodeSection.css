@@ -1,0 +1,17 @@
+.ask-for-code-section {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.ask-for-code-section__text {
+    margin: 0;
+    font-size: 14px;
+    color: var(--roman-text-muted, #6b5b4d);
+}
+
+.ask-for-code-section__button {
+    min-width: 170px;
+}

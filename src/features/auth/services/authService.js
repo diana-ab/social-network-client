@@ -39,3 +39,9 @@ export const sendLoginCode = async (data) => {
     const response= await api.post("/send-login-code",data)
     return response.data;
 }
+
+
+export const checkMailForRegister = async (data) => {
+    const response = await api.post("/register/check-email", data);
+    return response.data;
+};
