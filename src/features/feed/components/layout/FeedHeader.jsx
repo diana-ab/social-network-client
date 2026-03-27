@@ -7,8 +7,8 @@ function FeedHeader() {
 
     return (
         <header className="feed-header">
-            <div className="feed-header__left">
-                <h1 className="feed-header__logo">Feed</h1>
+            <div className="feed-header__center">
+                <h1 className="feed-header__title">The Empire</h1>
             </div>
 
             <div className="feed-header__right">
