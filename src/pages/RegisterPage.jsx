@@ -35,7 +35,7 @@ function RegisterPage() {
             const result = await checkMailForRegister({
                 email: formData.email,
             });
-
+            console.log(result);
             if (result.success) {
                 navigate("/register/verify", {
                     state: {

@@ -40,7 +40,7 @@ function RegisterCompletePage() {
         }
         const timer = setTimeout(() => {
             navigate("/login", { replace: true });
-        }, 2800);
+        }, 4000);
         return () => clearTimeout(timer);
     }, [isRegisterSuccess, navigate]);
 
