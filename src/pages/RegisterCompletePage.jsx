@@ -1,13 +1,15 @@
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useLocation, useNavigate, Link} from "react-router-dom";
 import {completeRegister} from "../features/auth/services/authService.js";
 import DynamicForm from "../shared/ui/form/DynamicForm.jsx";
 import useAuthForm from "../features/auth/hooks/useAuthForm.js";
+import StatusBanner from "../shared/ui/StatusBanner.jsx";
 
 function RegisterCompletePage() {
     const location = useLocation();
     const navigate = useNavigate();
     const registrationToken = location.state?.registrationToken;
+    const [isRegisterSuccess, setIsRegisterSuccess] = useState(false);
 
     const {
         formData,
@@ -29,6 +31,21 @@ function RegisterCompletePage() {
             navigate("/register", {replace: true});
         }
     }, [registrationToken, navigate]);
+
+
+
+    useEffect(() => {
+        if (!isRegisterSuccess) {
+            return;
+        }
+        const timer = setTimeout(() => {
+            navigate("/login", { replace: true });
+        }, 2800);
+        return () => clearTimeout(timer);
+    }, [isRegisterSuccess, navigate]);
+
+
+
 
     const fields = [
         {
@@ -71,7 +88,7 @@ function RegisterCompletePage() {
             });
 
             if (result.success) {
-                navigate("/login", {replace: true});
+                setIsRegisterSuccess(true);
             } else {
                 setErrorCodeMessage(result.errorCode);
             }
@@ -80,21 +97,37 @@ function RegisterCompletePage() {
         }
     };
 
+
+
+
+
+
     return (
-        <DynamicForm
-            title="Complete Register"
-            formData={formData}
-            setFormData={setFormData}
-            fields={fields}
-            onSubmit={handleCompleteRegister}
-            buttonText="Register"
-            message={message}
-            footer={
-                <p>
-                    Back to <Link to="/login">login</Link>
-                </p>
-            }
-        />
+        <div className="register-complete-page">
+            <StatusBanner
+                text={
+                    isRegisterSuccess
+                        ? "Welcome to The Empire. We own you… just kidding. (or do we?)"
+                        : ""
+                }
+                variant="success"
+            />
+
+            <DynamicForm
+                title="Complete Register"
+                formData={formData}
+                setFormData={setFormData}
+                fields={fields}
+                onSubmit={handleCompleteRegister}
+                buttonText="Register"
+                message={!isRegisterSuccess ? message : ""}
+                footer={
+                    <p>
+                        Back to <Link to="/login">login</Link>
+                    </p>
+                }
+            />
+        </div>
     );
 }
 

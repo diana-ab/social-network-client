@@ -1,0 +1,61 @@
+.status-banner {
+    position: fixed;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 90%;
+    max-width: 600px;
+
+    padding: 16px 20px;
+    border-radius: 16px;
+    text-align: center;
+
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+
+    z-index: 9999;
+
+    box-shadow: 0 12px 32px rgba(69, 31, 22, 0.25);
+
+    animation: statusBannerFadeIn 0.35s ease;
+}
+
+.status-banner--success {
+    background: linear-gradient(180deg, #f4df9c 0%, #e4c46f 100%);
+    border: 1px solid #c89d3d;
+    color: #5a3412;
+}
+
+.status-banner--error {
+    background: linear-gradient(180deg, #a0192c 0%, #7d1224 100%);
+    border: 1px solid #65101f;
+    color: #fff4e8;
+}
+
+@keyframes statusBannerFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+.status-banner--fade-out {
+    animation: statusBannerFadeOut 0.4s ease forwards;
+}
+
+@keyframes statusBannerFadeOut {
+    from {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -10px);
+    }
+}
